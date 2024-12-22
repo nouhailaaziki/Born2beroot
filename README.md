@@ -94,3 +94,17 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 
 ### Configuring the Language, Time Zone, and Keyboard Layout
 
+1. The screen will appear as shown below. For a better viewing experience, right-click with your mouse, select the **Virtual Screen 1** option, and scale it to **200%**. After that, choose the **Install** option, as we will proceed without using a graphical interface.
+![Better viewing](screen_shots_guide/better_viewing.png)
+![install button](screen_shots_guide/install_button.png)
+
+2. Next, you’ll be prompted to select a language. I’m choosing English.
+![Language](screen_shots_guide/language.png)
+
+3. Enter your Country, Territory, or Area. Since I’m in Morocco 🇲🇦 I’ll select Other.
+![Country](screen_shots_guide/country.png)
+
+4. Choose your continent or region. In my case, it's Morocco 🇲🇦. I will start by selecting Africa.
+![Continent](screen_shots_guide/continent.png)
+
+5. 
