@@ -107,4 +107,49 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 4. Choose your continent or region. In my case, it's Morocco 🇲🇦. I will start by selecting Africa.
 ![Continent](screen_shots_guide/continent.png)
 
-5. 
+5. Choose your Country, Territory, or Area. Since I’m Moroccan, I’ll select Morocco 🇲🇦.
+![Morocco](screen_shots_guide/morocco.png)
+
+6. For configuring locales, I’ll choose United States.
+![Configuring local](screen_shots_guide/default_locale.png)
+
+7. In keyboard configuration, Select American English to ensure the keys are correctly mapped; otherwise, the keyboard layout may not function as expected.
+![Keyboard](screen_shots_guide/keyboard.png)
+
+8. Once this steps is completed, you should see a window similar to the one below.
+![Loading](screen_shots_guide/loading.png)
+
+### Configuring the Network
+
+1. The system will first ask for the **hostname**. As per the instructions, you should enter your **intra name** followed by **42**. In my case, it’s **noaziki42**.
+![Hostname](screen_shots_guide/hostname.png)
+
+2. For domain name, We'll leave this section blank, as the instructions do not specify any requirements for a domain name.
+![Domain name](screen_shots_guide/domian_name.png)
+
+3. You’ll be prompted to enter a password for the system administrator account. It's important to write it down or take a photo for reference, as you will need it later. If you want to confirm that you've entered the password correctly, tab until you reach the **Show Password in Clear** option. Press the space bar, and the password will be displayed.
+![Root password](screen_shots_guide/root_password.png)
+
+4. Now, you'll be asked to re-enter the password to confirm it. Make sure it matches the one you entered previously.
+![Re-enter password](screen_shots_guide/re_enter_password.png)
+
+5. To avoid using the root account for non-administrative tasks, you'll be prompted to create a normal user account. I’ll enter my full name, **Nouhaila Aziki**, as the full name for the new user.
+![Full name](screen_shots_guide/full_name.png)
+
+6. Now, you’ll be asked to provide a nickname or username for the non-root user. I’ll proceed with my intra username, **noaziki**, as the username for the new user.
+![Username](screen_shots_guide/username.png)
+
+7. You’ll need to choose a password for the non-root user. I’m proceeding with a new one, but if you think you might forget it, it's better to use the same password as the one for the Root User 😊.
+![User password](screen_shots_guide/user_password.png)
+
+8. You’ll need to confirm the password for the non-root user. As I showed when setting the root password, you can use the arrows to navigate to the **Show Password** option and press the space bar to display it, ensuring it’s correct.
+![Re-enter user password](screen_shots_guide/re_enter_user_password.png)
+
+### Setting Up the Partitions
+
+Partitioning is crucial for organizing disk space on your server. It divides the disk into separate sections, each serving a specific purpose.
+
+Use Entire Disk and Set Up Encrypted LVM: This option selects guided partitioning, which will automatically partition the disk and set up encrypted Logical Volume Manager (LVM). This option is required since the project specifies the use of encrypted partitions.
+**BUT... ⚠️❗️** If you're aiming to complete the **bonus part** of the project, you'll need to click Manual and proceed with custom partitioning. This part is a reminder for those who want to do the bonus work. If you want to follow the default process, you can skip this step and continue with the guided option.
+
+I will proceed with what’s required for the bonus part, but you can choose to skip it and go straight to the guided partitioning.
