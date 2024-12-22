@@ -149,7 +149,82 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 
 Partitioning is crucial for organizing disk space on your server. It divides the disk into separate sections, each serving a specific purpose.
 
-Use Entire Disk and Set Up Encrypted LVM: This option selects guided partitioning, which will automatically partition the disk and set up encrypted Logical Volume Manager (LVM). This option is required since the project specifies the use of encrypted partitions.
+1. **Use Entire Disk and Set Up Encrypted LVM**: This option selects guided partitioning, which will automatically partition the disk and set up encrypted Logical Volume Manager (LVM). This option is required since the project specifies the use of encrypted partitions.
+
 **BUT... ⚠️❗️** If you're aiming to complete the **bonus part** of the project, you'll need to click Manual and proceed with custom partitioning. This part is a reminder for those who want to do the bonus work. If you want to follow the default process, you can skip this step and continue with the guided option.
 
 I will proceed with what’s required for the bonus part, but you can choose to skip it and go straight to the guided partitioning.
+![Partition disk](screen_shots_guide/partition_disks_manual.png)
+
+2. In this section, you’ll see a general description of your partitions and mount points. Since we haven’t created any partitions yet, we need to create a  new partition table. To do this, choose the device where you want to create the partitions. In my case, I’ll select the only available device: SCSI2 (0, 0, 0) (sda) - 33.1 GB ATA VBOX HARDDISK.
+
+Don’t be confused if you see SCSI3 instead, as the SCSI controller number is assigned automatically by VirtualBox and may vary between installations or configurations. This number is just a virtual representation of the disk controller used by the virtual machine. As long as you choose the correct disk (sda) with the correct capacity (33.1 GB ATA VBOX HARDDISK), you should be good to go.
+![Partition disk](screen_shots_guide/partition_disks_scsi2.png)
+
+3. Click **Yes** to confirm the device selection.
+![Yes button](screen_shots_guide/new_empty_partition.png)
+
+4. After completing the previous step, you’ll see an empty partition table. To configure it, select the **FREE SPACE** in order to create the partitions.
+![Empty partition](screen_shots_guide/free_space.png)
+
+5. Create a new partition.
+![Create a partition](screen_shots_guide/create_a_partition.png)
+
+6. Following the image provided in the subject, we will create the partitions one by one (this image from the bonus part).
+![Partition size](screen_shots_guide/partition_size.png)
+
+7. As indicated in the subject, the size of the first partition should be **500 megabytes**.
+![First partition size](screen_shots_guide/first_partition_size.png)
+
+8. I will briefly explain the different types of sections:
+
+`Primary Partition: This is the only type of partition that can hold an operating system. A hard drive can have up to four primary partitions, or three primary partitions and one extended partition.`
+
+`Extended Partition: Designed to overcome the limit of four primary partitions on a single disk, only one extended partition can exist per disk. It serves as a container for logical partitions.`
+
+`Logical Partition: This partition exists within an extended partition and is formatted with a specific file system, like ext4. Once formatted, it is recognized by the operating system as a separate drive. While you can have up to 23 logical partitions in theory, Linux limits this to 15 logical partitions for practical use, which is more than enough for the scope of this project.`
+
+For this step, we will choose Primary because it will be the partition where the Operating System will be installed.
+![First partition](screen_shots_guide/type_for_the_first_partition.png)
+
+9. We will select **Beginning** because we want the new partition to be created at the start of the available space on the disk.
+![Location for the first partition](screen_shots_guide/location_for_the_first_partition.png)
+
+10. The following screenshot displays the partition details. We will modify the mount point according to the specifications provided in the project instructions.
+![Following screenshot](screen_shots_guide/first_partition_settings.png)
+
+11. We will choose **/boot** as the mount point for our partition, as specified in the project instructions.
+![Following screenshot](screen_shots_guide/mount_point_for_first_partition.png)
+
+12. We have finished configuring the current partition.
+![Following screenshot](screen_shots_guide/first_partition_setting_done.png)
+
+13. Once we have completed the previous step, the partition should appear. Next, we need to create a logical partition using all the remaining available disk space. This partition will have no mount point and will be encrypted. To do this, we select the free space where we want to create the logical partition.![Following screenshot](screen_shots_guide/second_free_space.png)
+
+14. Create a new partition
+![Following screenshot](screen_shots_guide/creat_second_partition.png)
+
+15. We will follow the example provided in the subject for creating the logical partition.
+![Following screenshot](screen_shots_guide/partition_size.png)
+
+16. We will select max for this partition to utilize all the remaining available disk space.
+![Following screenshot](screen_shots_guide/second_partition_size.png)
+
+17. Since we need to create the LVM, we must select Logical for this partition type.
+![Following screenshot](screen_shots_guide/type_for_the_second_partition.png)
+
+18. For this partition, we will not assign a mount point, as it is meant to be encrypted and used for LVM (Logical Volume Management).
+![Following screenshot](screen_shots_guide/second_partition_setting.png.png)
+
+19. In the context of virtual machines (VMs) and disk management, logical partitions are typically not mounted directly because they are part of a larger virtual disk image or disk file. Instead, they are used as components of LVM (Logical Volume Management), where they are combined into logical volumes that are then mounted for use by the system.
+![Following screenshot](screen_shots_guide/mount_point_for_second_partition.png)
+
+20. Now that we have selected Logical for the partition type and left it without a mount point, we can finish the partitioning process by confirming and applying the changes. Once done, the logical partition will be created, and we'll proceed to the next steps in the setup process.
+![Following screenshot](screen_shots_guide/second_partition_setting_done.png)
+
+21. Let's configure the encrypted volumes now
+
+
+
+
+11. 
