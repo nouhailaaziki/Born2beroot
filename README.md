@@ -11,6 +11,8 @@ Whether setting up servers, troubleshooting, or optimizing performance, **Born2b
 
 *For more check the [subject](subject.pdf)*
 
+`Before starting, it's important to understand that each action in every step serves a specific purpose. You should know why it's being done and how it contributes to the overall process. A solid grasp of the technical context is crucial to fully comprehend the procedure.`
+
 ## Step 1: Check for VirtualBox
 
 To get started, ensure you have **VirtualBox** installed. If not, you can download it from [this link](https://www.virtualbox.org/). **VirtualBox** is essential for setting up the operating system we’ll be working with.
@@ -51,4 +53,44 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 1. Launch Oracle **VirtualBox**.
 
 2. Select the "**New**" button at the top of the window.
-![New button](photos/installation/newbutton.png)
+![New button](screen_shots_guide/new_button.png)
+
+3. In the **name** field, enter "Born2beroot" and change the **version** to Debian (64-bit).
+![Name and operating system](screen_shots_guide/name_and_operating_system.png)
+
+4. After pressing **continue** button, the **memory size** should automatically be set to **1024 MB** (1 GB), which is recommended. If it doesn’t appear as **1024 MB**, manually adjust it to that value.
+![Memory size](screen_shots_guide/memory_size.png)
+
+5. After pressing **continue** button, When prompted with three options, select the second one: **Create a virtual hard disk now**.
+   ![Hard disk](screen_shots_guide/hard_disk.png)
+
+6. After pressing **continue** button, In the **Hard disk file type** options, choose the first option: **VDI (VirtualBox Disk Image)**.
+   ![Hard disk file type](screen_shots_guide/hard_disk_file_type.png)
+
+7. After pressing **continue** button, In the **Storage on physical hard disk** options, choose the first option: **Dynamically allocated**.
+   ![Storage on physical hard disk](screen_shots_guide/storage_on_physical_hard_disk.png)
+
+8.  After pressing **continue** button, set the size of the virtual hard disk to **30 GB** if you're going to work on the **bonus part** of the project (You cannot select 30 GB exactly, but make sure the size is set to at least 30 GB). If you're only going to complete the **mandatory part**, choose **8 GB**. If you choose the **mandatory** option, you won't need the extra steps required for the **bonus part** later on. Since you're focusing on the **bonus**, you'll proceed with the 30 GB size.
+![File location and size](screen_shots_guide/file_location_and_size.png)
+
+9.  After pressing **continue** or **finished** button, you should see your new **Virtual Machine** created. To move on to the next step, go to **Settings** to start mounting an **ISO file**.
+![Settings button](screen_shots_guide/settings_button.png)
+
+10. In **Settings**, click on the **Storage** tab, then select the **Empty** option under **Storage Devices**.
+![Storage button](screen_shots_guide/storage_button.png)
+
+## Step 4: Mount the ISO File and Start the Virtual Machine
+
+1. Once you’ve clicked on **Empty**, you should see a small disk icon similar to the one in the **screenshot below** next to the **optical drive**. Click on it.
+![Disk file](screen_shots_guide/disk_file.png)
+
+2. Choose **debian-12.8.0-amd64-netinst.iso** from the list if it appears. If it doesn't show up, click on the **Choose a disk file** button and select the **debian-12.8.0-amd64-netinst.iso** file from the folder where you downloaded **Debian**.
+![Choose a disk file](screen_shots_guide/choose_a_disk_file.png)
+
+3. Now, start the machine by clicking the **Start** button, so you can continue with the next step to install **Debian**.
+![Start button](screen_shots_guide/start_button.png)
+
+## Step 5: Installing Debian Operating System
+
+### Configuring the Language, Time Zone, and Keyboard Layout
+
