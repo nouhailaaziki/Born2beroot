@@ -231,5 +231,15 @@ For this step, we will choose Primary because it will be the partition where the
  23. Waiting for upload.
 ![Waiting](screen_shots_guide/waiting_for_upload.png)
 
- 24.  Now, we proceed to create the encrypted volumes. This step involves setting up the partition for encryption to ensure data security.
-![Create it](screen_shots_guide/dev_sda5.png)
+ 24. Now, we proceed to create the encrypted volumes. This step involves setting up the partition for encryption to ensure data security.
+![Create it](screen_shots_guide/create_the_encrypted_volume.png)
+
+25. We select the partition we want to encrypt. Use the arrow keys to navigate to /dev/sda5, and press the space bar to select it.
+![Create it](screen_shots_guide/dev:sda5.png)
+
+
+
+
+
+
+
