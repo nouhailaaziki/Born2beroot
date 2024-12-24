@@ -237,8 +237,17 @@ For this step, we will choose Primary because it will be the partition where the
 25. We select the partition we want to encrypt. Use the arrow keys to navigate to /dev/sda5, and press the space bar to select it.
 ![Create it](screen_shots_guide/dev:sda5.png)
 
+26. We have completed the configuration of the current partition and can now proceed to the next step.
+![Completed](screen_shots_guide/the_current_partition_finished.png)
 
+27. We are done with this step, as we do not need to create any additional encrypted volumes.
+![done](screen_shots_guide/finish.png)
 
+28. We accept the confirmation message, which informs us that everything within the selected partition will be encrypted. The process should complete quickly.
+![done](screen_shots_guide/click_yes.png)
+
+29. 
+![done](screen_shots_guide/Screen Shot 2024-12-24 at 11.19.43 AM.png)
 
 
 
