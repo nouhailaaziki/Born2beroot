@@ -223,8 +223,13 @@ For this step, we will choose Primary because it will be the partition where the
 ![Following screenshot](screen_shots_guide/second_partition_setting_done.png)
 
 21. Let's configure the encrypted volumes now
+![configure](screen_shots_guide/configure_encrypted_volumes.png)
 
+22. Accept the confirmation message to proceed with configuring the encrypted volume. This step finalizes the encryption setup and applies the necessary changes to the partition.
+![Accept](screen_shots_guide/write_the_changes.png)
 
+ 23. Waiting for upload.
+![Waiting](screen_shots_guide/waiting_for_upload.png)
 
-
-11. 
+ 24.  Now, we proceed to create the encrypted volumes. This step involves setting up the partition for encryption to ensure data security.
+![Create it](screen_shots_guide/dev/sda5)
