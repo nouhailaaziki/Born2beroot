@@ -232,4 +232,4 @@ For this step, we will choose Primary because it will be the partition where the
 ![Waiting](screen_shots_guide/waiting_for_upload.png)
 
  24.  Now, we proceed to create the encrypted volumes. This step involves setting up the partition for encryption to ensure data security.
-![Create it](screen_shots_guide/dev/sda5)
+![Create it](screen_shots_guide/dev_sda5.png)
