@@ -246,9 +246,32 @@ For this step, we will choose Primary because it will be the partition where the
 28. We accept the confirmation message, which informs us that everything within the selected partition will be encrypted. The process should complete quickly.
 ![done](screen_shots_guide/click_yes.png)
 
-29. 
-![done](screen_shots_guide/Screen Shot 2024-12-24 at 11.19.43 AM.png)
+29. We don't mind whether it takes a long time or a short time; we simply click 'Cancel' because there is nothing to encrypt, as the partition is empty.
+![Click cancel](screen_shots_guide/Screen_Shots_1.png)
 
+30. Once again, we will need to enter a password, but this time it will be the encryption phrase. As I mentioned earlier, you must repeat the process and write it down, as it will be important in the future.
+![Password](screen_shots_guide/Screen_Shots_2.png)
 
+31. Confirm the password.
+![Password](screen_shots_guide/Screen_Shots_3.png)
 
+32. Now we'll configure the Logical Volume Manager.
+![Logical Volume Manager](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.24.02%20AM.png)
 
+33. We will accept the confirmation message, as we agree that the changes will be saved to the disk.
+![Accept](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.24.40%20AM.png)
+
+34. Let's create a new volume group. A volume group combines multiple partitions.
+![Volume Group](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.25.41%20AM.png)
+
+35. We need to assign the name as specified in the instructions: LVMGroup.
+![LVMGroup](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.26.31%20AM.png)
+
+36. Select the partition where the group should be created.
+![group's partition](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.38.37%20AM.png)
+
+37. We need to create them according to the example provided in the instructions.
+![subject's instructions]()
+![Create logical volume](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.39.30%20AM.png)
+
+38. We'll begin by selecting the group where we want them to be created. Choose the only available group (the one we just created).
