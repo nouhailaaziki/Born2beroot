@@ -55,7 +55,7 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 2. Select the "**New**" button at the top of the window.
 ![New button](screen_shots_guide/new_button.png)
 
-3. In the **name** field, enter "Born2beroot" and change the **version** to Debian (64-bit).
+3.  In the name field, enter **'Born2beroot'** and change the version to **Debian (64-bit)**. Also, make sure to select the machine folder path as `Goinfre/home` if you are working on a computer of the school.
 ![Name and operating system](screen_shots_guide/goinfre.png)
 
 4. After pressing **continue** button, the **memory size** should automatically be set to **1024 MB** (1 GB), which is recommended. If it doesn’t appear as **1024 MB**, manually adjust it to that value.
