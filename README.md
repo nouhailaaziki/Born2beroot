@@ -214,7 +214,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![Following screenshot](screen_shots_guide/type_for_the_second_partition.png)
 
 18. For this partition, we will not assign a mount point, as it is meant to be encrypted and used for LVM (Logical Volume Management).
-![Following screenshot](screen_shots_guide/second_partition_setting.png.png)
+![Following screenshot](screen_shots_guide/second_partition_setting.png)
 
 19. In the context of virtual machines (VMs) and disk management, logical partitions are typically not mounted directly because they are part of a larger virtual disk image or disk file. Instead, they are used as components of LVM (Logical Volume Management), where they are combined into logical volumes that are then mounted for use by the system.
 ![Following screenshot](screen_shots_guide/mount_point_for_second_partition.png)
