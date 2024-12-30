@@ -247,13 +247,13 @@ For this step, we will choose Primary because it will be the partition where the
 ![done](screen_shots_guide/click_yes.png)
 
 29. We don't mind whether it takes a long time or a short time; we simply click 'Cancel' because there is nothing to encrypt, as the partition is empty.
-![Click cancel](screen_shots_guide/Screen_Shots_1.png)
+![Click cancel](screen_shots_guide/Screen_Shot_1.png)
 
 30. Once again, we will need to enter a password, but this time it will be the encryption phrase. As I mentioned earlier, you must repeat the process and write it down, as it will be important in the future.
-![Password](screen_shots_guide/Screen_Shots_2.png)
+![Password](screen_shots_guide/Screen_Shot_2.png)
 
 31. Confirm the password.
-![Password](screen_shots_guide/Screen_Shots_3.png)
+![Password](screen_shots_guide/Screen_Shot_3.png)
 
 32. Now we'll configure the Logical Volume Manager.
 ![Logical Volume Manager](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.24.02%20AM.png)
