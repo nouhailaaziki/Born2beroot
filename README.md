@@ -271,7 +271,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![group's partition](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.38.37%20AM.png)
 
 37. We need to create them according to the example provided in the instructions.
-![subject's instructions]()
+![subject's instructions](screen_shots_guidepartition_size.png)
 ![Create logical volume](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.39.30%20AM.png)
 
 38. We'll begin by selecting the group where we want them to be created. Choose the only available group (the one we just created).
