@@ -70,8 +70,8 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 7. After pressing **continue** button, In the **Storage on physical hard disk** options, choose the first option: **Dynamically allocated**.
    ![Storage on physical hard disk](screen_shots_guide/storage_on_physical_hard_disk.png)
 
-8.  After pressing **continue** button, set the size of the virtual hard disk to **30 GB** if you're going to work on the **bonus part** of the project (You cannot select 30 GB exactly, but make sure the size is set to at least 30 GB). If you're only going to complete the **mandatory part**, choose **8 GB**. If you choose the **mandatory** option, you won't need the extra steps required for the **bonus part** later on. Since you're focusing on the **bonus**, you'll proceed with the 30 GB size.
-![File location and size](screen_shots_guide/file_location_and_size.png)
+8.  After pressing **continue** button, set the size of the virtual hard disk to **30.80 GB** if you're going to work on the **bonus part** of the project. If you're only going to complete the **mandatory part**, choose **8 GB**. If you choose the **mandatory** option, you won't need the extra steps required for the **bonus part** later on. Since you're focusing on the **bonus**, you'll proceed with the 30.80 GB size.
+![File location and size](screen_shots_guide/the_size_of_vm.png)
 
 9.  After pressing **continue** or **finished** button, you should see your new **Virtual Machine** created. To move on to the next step, go to **Settings** to start mounting an **ISO file**.
 ![Settings button](screen_shots_guide/settings_button.png)
