@@ -291,47 +291,52 @@ For this step, we will choose Primary because it will be the partition where the
 43. Now, in the section displaying all the partitions and available free space, you should see all the logical partitions we just created. Our next step is to configure each one by selecting the desired file system and the corresponding mount point as specified in the subject. We’ll proceed in order, starting with the first partition that appears, which is "home," by pressing Enter.
 ![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.38.28%20PM.png)
    
-45. It will display the partition configuration. Since the partition currently lacks a file system, we need to assign one. To do this, press Enter on the `"Use as"` option, which is currently set to `"Do not use."`
+44. It will display the partition configuration. Since the partition currently lacks a file system, we need to assign one. To do this, press Enter on the `"Use as"` option, which is currently set to `"Do not use."`
 ![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.39.07%20PM.png)
 
-46. Select the Ext4 file system, as it is the most commonly used file system in Linux distributions.
+45. Select the Ext4 file system, as it is the most commonly used file system in Linux distributions.
 ![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.40.03%20PM.png)
 
-47. Next, we need to select the mount point by pressing Enter on the "Mount point" option.
+46. Next, we need to select the mount point by pressing Enter on the "Mount point" option.
 ![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.40.46%20PM.png)
 
-48. For the "home" partition, select "home" as the mount point. For future partitions, choose the appropriate mount points specific to each one to avoid repetition.
+47. For the "home" partition, select "home" as the mount point. For future partitions, choose the appropriate mount points specific to each one to avoid repetition.
 ![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.41.27%20PM.png)
 
-49. The partition setup is complete.
+48. The partition setup is complete.
 ![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.42.28%20PM.png)
 
-50. Now, proceed with the same steps for all the partitions. For the var/log partition, manually enter the mount point. For the swap partition, instead of choosing a file system, select "swap area" after you click `"Use as: Do not use."`, Once all the partitions are configured, click "Finish partitioning" and confirm to write the changes to the disk.
+49. Now, proceed with the same steps for all the partitions. For the var/log partition, manually enter the mount point. For the swap partition, instead of choosing a file system, select "swap area" after you click `"Use as: Do not use."`, Once all the partitions are configured, click "Finish partitioning" and confirm to write the changes to the disk.
 ![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-26%20at%205.04.02%20PM.png)
 
-52. Confirm the changes, and after that, you will see the installation progress bar.
+50. Confirm the changes, and after that, you will see the installation progress bar.
 ![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-31%20at%201.46.41%20PM.png)
 ![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-26%20at%205.05.09%20PM.png)
 
-54. It will prompt us to install additional packages. However, select "No" since they are not needed for this setup.
+51. It will prompt us to install additional packages. However, select "No" since they are not needed for this setup.
 ![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.44.40%20AM.png)
 
-55. Choose the country that is specific to your location. This will set the appropriate time zone and regional settings for your system.
+52. Choose the country that is specific to your location. This will set the appropriate time zone and regional settings for your system.
 ![Morocco](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.45.07%20AM.png)
 
-56. Choosing `deb.debian.org` ensures faster, reliable, and secure package downloads by automatically selecting the best mirror based on your location.
+53. Choosing `deb.debian.org` ensures faster, reliable, and secure package downloads by automatically selecting the best mirror based on your location.
 ![deb](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.48.18%20AM.png)
 
-57. Leave this field empty and press `continue`
+54. Leave this field empty and press `continue`
 ![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.49.10%20AM.png)
 
-58. Since we do not want developers to see our statistics, select `"No"`
+55. Since we do not want developers to see our statistics, select `"No"`
 ![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.50.24%20AM.png)
 
-59. Remove all software options by pressing the space bar and then click "Continue," as these options are forbidden according to the subject.
+56. Remove all software options by pressing the space bar and then click "Continue," as these options are forbidden according to the subject.
 ![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.51.45%20AM.png)
 
-60. Select "Yes" to install the GRUB bootloader on the hard drive. GRUB is essential in the boot process of Linux-based operating systems, providing a flexible and customizable bootloader that manages system booting, kernel loading, and system recovery.
+57. Select "Yes" to install the GRUB bootloader on the hard drive. GRUB is essential in the boot process of Linux-based operating systems, providing a flexible and customizable bootloader that manages system booting, kernel loading, and system recovery.
 ![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.52.39%20AM.png)
 
-61. 
+58. Next, choose the device for the bootloader installation. Select /dev/sda (ata_VBOX_HARDDISK) as the target for the GRUB bootloader. This ensures that your system will boot from the correct hard drive.
+![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%201.55.25%20PM.png)
+
+59. Type `"Continue"` to complete the installation and finish setting up your system.
+![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%201.57.23%20PM.png)
+
