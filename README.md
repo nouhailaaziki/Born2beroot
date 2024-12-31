@@ -1,6 +1,8 @@
 # Born2beroot
 
 ## Description
+---
+
 **Born2beroot** is your essential companion to mastering Linux system administration, designed to guide beginners and aspiring professionals into the world of root access and system management. This resource simplifies the complexities of Linux, offering clear, practical steps to help users build confidence and expertise.
 
 From foundational concepts like file systems, permissions, and processes to advanced topics such as security, networking, and automation, Born to be Root equips you with the tools and knowledge to excel in system administration. Its hands-on tutorials and real-world examples provide a solid framework for tackling diverse challenges, ensuring you gain both understanding and practical skills.
@@ -14,6 +16,7 @@ Whether setting up servers, troubleshooting, or optimizing performance, **Born2b
 `Before starting, it's important to understand that each action in every step serves a specific purpose. You should know why it's being done and how it contributes to the overall process. A solid grasp of the technical context is crucial to fully comprehend the procedure.`
 
 ## Step 1: Check for VirtualBox
+---
 
 To get started, ensure you have **VirtualBox** installed. If not, you can download it from [this link](https://www.virtualbox.org/). **VirtualBox** is essential for setting up the operating system we’ll be working with.
 
@@ -27,6 +30,7 @@ At 1337, **VirtualBox** is already available on the macOS devices, so you likely
 - **Hypervisor**: Discover the role of a hypervisor and how it enables virtualization by managing virtual machines.
 
 ## Step 2: Selecting the Operating System
+---
 
 ### Debian vs Rocky Linux
 
@@ -49,6 +53,7 @@ When considering the operating system for the "**Born2beroot**" project, **Debia
 In conclusion, Debian offers a dependable, secure, and well-documented platform that fits perfectly with the project’s needs. It’s an excellent choice for gaining hands-on experience in system administration while ensuring your environment is well-supported and aligned with the project’s goals.
 
 ## Step 3: Creating a New Virtual Machine in Oracle VirtualBox
+---
 
 1. Launch Oracle **VirtualBox**.
 
@@ -80,6 +85,7 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 ![Storage button](screen_shots_guide/storage_button.png)
 
 ## Step 4: Mount the ISO File and Start the Virtual Machine
+---
 
 1. Once you’ve clicked on **Empty**, you should see a small disk icon similar to the one in the **screenshot below** next to the **optical drive**. Click on it.
 ![Disk file](screen_shots_guide/disk_file.png)
@@ -339,4 +345,33 @@ For this step, we will choose Primary because it will be the partition where the
 
 59. Type `"Continue"` to complete the installation and finish setting up your system.
 ![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%201.57.23%20PM.png)
+
+## Step 6: Virtual Machine Configuration
+---
+
+1. The first step is to enter the encryption password that you previously set up during the installation process. This will unlock the encrypted disk and allow the system to boot successfully.
+![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%201.59.11%20PM.png)
+
+2. Next, enter the username and password for the non-root user that you created during the installation process. This will log you into the system with regular user privileges.
+![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%202.18.28%20PM.png)
+Great! 🎉 Now that everything is set up, you're ready to begin configuring your Debian virtual machine. You can now proceed with installing any necessary software, setting up your development environment, or customizing the system to suit your needs. Enjoy exploring your virtual machine!
+
+## Step 7: Install sudo and configure users and groups
+---
+
+1. To install **sudo**, we first need to switch to the root user. Open the terminal, type `su`, and enter the root password when prompted. Once logged in as root, run the command `apt install sudo` to install the required package. After installation, restart the machine to apply the changes. Use the command `sudo reboot` to reboot the system and wait for it to restart.
+![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%202.19.55%20PM.png)
+
+2. Once rebooted we need to re-enter the encryption and user passwords. To make sure we installed sudo correctly, we will enter the root user again and enter the command sudo -V. This command will, in addition to showing the version of sudo, also display the arguments passed to configure when creating sudo and plugins that can display more information. Optional: Since the output of the command is quite long, if we want to see it in full we should redirect its output to a file sudo -V > file.txt and then edit the nano file.txt. Or put | more after the command.
+![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%202.33.24%20PM.png)
+
+
+
+
+
+
+
+
+
+
 
