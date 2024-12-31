@@ -283,6 +283,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![size](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.40.59%20AM%20copy.png)
 
 41. To avoid repetition, proceed by applying the same process to all partitions in the volume group. Assign each one the same name and size as outlined in the example above.
+![subject's instructions](screen_shots_guide/partition_size.png)
 
 42. Once you’ve created all the logical volumes as specified, your window should match the one shown below. At this point, simply type `"finish"` to complete the process.
 ![size](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.14.28%20AM.png)
