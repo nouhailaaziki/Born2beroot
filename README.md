@@ -310,9 +310,10 @@ For this step, we will choose Primary because it will be the partition where the
 ![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-26%20at%205.04.02%20PM.png)
 
 52. Confirm the changes, and after that, you will see the installation progress bar.
+![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-31%20at%201.46.41%20PM.png)
 ![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-26%20at%205.05.09%20PM.png)
 
-53. It will prompt us to install additional packages. However, select "No" since they are not needed for this setup.
+54. It will prompt us to install additional packages. However, select "No" since they are not needed for this setup.
 ![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.44.40%20AM.png)
 
 55. Choose the country that is specific to your location. This will set the appropriate time zone and regional settings for your system.
