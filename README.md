@@ -271,7 +271,50 @@ For this step, we will choose Primary because it will be the partition where the
 ![group's partition](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.38.37%20AM.png)
 
 37. We need to create them according to the example provided in the instructions.
-![subject's instructions](screen_shots_guidepartition_size.png)
-![Create logical volume](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.39.30%20AM.png)
+![subject's instructions](screen_shots_guide/partition_size.png)
 
 38. We'll begin by selecting the group where we want them to be created. Choose the only available group (the one we just created).
+![Create logical volume](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.39.30%20AM.png)
+
+39. We'll follow the sequence outlined in the subject for creating the logical volume, beginning with the root and finishing with var-log. After that, we’ll choose a name for each logical volume accordingly.
+![root](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.40.11%20AM%20copy.png)
+
+40. As specified in the subject, the size will be set to 10GB.
+![size](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.40.59%20AM%20copy.png)
+
+41. To avoid repetition, proceed by applying the same process to all partitions in the volume group. Assign each one the same name and size as outlined in the example above.
+
+42. Once you’ve created all the logical volumes as specified, your window should match the one shown below. At this point, simply type `"finish"` to complete the process.
+![size](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.14.28%20AM.png)
+
+43. Now, in the section displaying all the partitions and available free space, you should see all the logical partitions we just created. Our next step is to configure each one by selecting the desired file system and the corresponding mount point as specified in the subject. We’ll proceed in order, starting with the first partition that appears, which is "home," by pressing Enter.
+![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.38.28%20PM.png)
+   
+45. It will display the partition configuration. Since the partition currently lacks a file system, we need to assign one. To do this, press Enter on the `"Use as"` option, which is currently set to `"Do not use."`
+![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.39.07%20PM.png)
+
+46. Select the Ext4 file system, as it is the most commonly used file system in Linux distributions.
+![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.40.03%20PM.png)
+
+47. Next, we need to select the mount point by pressing Enter on the "Mount point" option.
+![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.40.46%20PM.png)
+
+48. For the "home" partition, select "home" as the mount point. For future partitions, choose the appropriate mount points specific to each one to avoid repetition.
+![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.41.27%20PM.png)
+
+49. The partition setup is complete.
+![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.42.28%20PM.png)
+
+50. Now, proceed with the same steps for all the partitions. For the var/log partition, manually enter the mount point. For the swap partition, instead of choosing a file system, select "swap area" after you click `"Use as: Do not use."`, Once all the partitions are configured, click "Finish partitioning" and confirm to write the changes to the disk.
+![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-26%20at%205.04.02%20PM.png)
+
+51. Confirm the changes, and after that, you will see the installation progress bar.
+![Finish partitioning](screen_shots_guide/Screen%20Shot%202024-12-26%20at%205.05.09%20PM.png)
+
+
+
+
+
+
+
+
