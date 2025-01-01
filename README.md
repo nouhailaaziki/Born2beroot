@@ -368,15 +368,62 @@ Great! 🎉 Now that everything is set up, you're ready to begin configuring you
  3. Next, we need to create a new group called user42. To do this, run the following command `sudo addgroup user42`, this will add the new group to the system.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.01.05%20AM.png)
 
-4. 🤔 Have you heard of **GID**? It stands for **Group Identifier**—essentially the unique ID assigned to each group in Unix-like systems. Similar to how users are given a **UID** (User ID), groups are identified by their **GID**. This identifier is key for managing permissions and access control, allowing users in the same group to collaborate and share resources seamlessly. Think of the **GID** as the group’s digital signature, ensuring efficient organization and coordination within the system.
+4. ```🤔 Have you heard of **GID**? It stands for **Group Identifier**—essentially the unique ID assigned to each group in Unix-like systems. Similar to how users are given a **UID** (User ID), groups are identified by their **GID**. This identifier is key for managing permissions and access control, allowing users in the same group to collaborate and share resources seamlessly. Think of the **GID** as the group’s digital signature, ensuring efficient organization and coordination within the system.```
 
 🤔 Was the group created successfully? Yes, since no error message appeared, the group has been created properly. To confirm, you can use the command `getent group group_name`.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.02.46%20AM.png)
 Running the command `cat /etc/group` will display the contents of the **/etc/group** file, which includes a list of all groups on your system, along with their **GID** and members. The output will look something like this:
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.05.06%20AM.png)
 
-5. 
+5. To add a user to a group, you can use the command `sudo adduser username group_name`, this command will include the user in the specified group. In this case, we need to add the user to both the sudo and user42 groups. To do this, run `sudo adduser username sudo` and `sudo adduser username user42`. After adding the user to the groups, you can verify that everything is set up correctly by using the command `getent group group_name`. Alternatively, you can open and edit the `/etc/group` file using `sudo vim /etc/group`. In this file, you should see the username listed under both the sudo and user42 groups. This confirms that the user is correctly added to the groups.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.08.07%20AM.png)
+
+## Step 8: Install and configure the SSH
+---
+
+```🔒 **SSH**, or **Secure Shell**, serves as both a protocol and a tool for securely accessing remote servers. It establishes an encrypted communication channel, ensuring that all data exchanged between the client and the server remains confidential and intact. This strong encryption makes SSH indispensable for secure remote management and file transfers.```
+
+1. The first thing, we’ll install the primary connectivity tool for remote login using the SSH protocol: OpenSSH. To install it, we’ll enter the following command `sudo apt install openssh-server`. When prompted with a confirmation message, type Y to proceed, and then wait for the installation to complete.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.23.27%20AM.png)
+After running the installation command, you should see an output similar to the following:
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.24.21%20AM.png)
+To verify that OpenSSH has been installed correctly, we’ll run the following command `sudo service ssh status`. If the installation was successful, you should see an output indicating that the SSH service is active and running, similar to this:
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.25.23%20AM.png)
+This confirms that SSH is up and running.
+
+2. After completing the installation, there are configuration files that we need to adjust. For this, we’ll use vim(to install vim use the command `apt install vim`), or any other preferred text editor. The first file to modify is located at `/etc/ssh/sshd_config`. If you're not logged in as the root user, you might not have the necessary write permissions. In such cases, you can either. Switch to the root user by running `su -`, followed by entering the root password. Or, simply prepend sudo to the command to temporarily gain root privileges, like this `sudo vim /etc/ssh/sshd_config`. This allows you to edit the configuration file with the proper permissions.
+
+The following image illustrates the vim installation stage.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.37.44%20AM.png)
+This command below is to open /etc/ssh/sshd_config
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.19.21%20AM.png)
+You have to see as in the picture
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.20.12%20AM.png)
+
+In the SSH configuration file (/etc/ssh/sshd_config), lines that begin with a # are commented out, meaning they are inactive. To modify these lines, we will need to remove the comment (the #) and then update the values. Once you're editing the file, locate the following lines and modify them as shown. Change the port number:
+`#Port 22`
+Remove the # and change the port to 4242, so the line should look like this:
+`Port 4242`
+Disable root login:
+`#PermitRootLogin prohibit-password`
+Remove the # and set root login to no:
+`PermitRootLogin no`
+After making these changes, save the file and exit the editor with `ESC` and `:wq!` .
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.22.05%20AM.png)
+
+3. Next, we need to edit the file located at: `/etc/ssh/ssh_config`
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.31.02%20AM.png)
+Uncoment the Port 22 and change it to 4242
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.33.13%20AM.png)
+
+4. Finally, to apply the changes we’ve made, we need to restart the SSH service. To do this, run the following command: `sudo service ssh restart`. Once the service has been restarted, you can check its status to confirm that the changes have been applied correctly. Use the following command: `sudo service ssh status`. Look for the Port 4242 line in the output to verify that the server is now listening on the new port. It should look similar to this:
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.36.02%20AM.png)
+This confirms that SSH is now operating on Port 4242 as intended.
+
+## Step 9: Install and configure the UFW
+---
 
 
+🔒 **UFW** (Uncomplicated Firewall) is a user-friendly front-end for managing **iptables**, the default firewall configuration tool used by many Linux distributions. It simplifies the process of configuring firewall rules through an intuitive command-line interface. This makes it easy for users to control network traffic and strengthen system security with just a few commands.
 
-
+With UFW, even users with limited experience in firewall management can quickly set up and maintain strong firewall policies, protecting their systems from unauthorized access and potential threats.
