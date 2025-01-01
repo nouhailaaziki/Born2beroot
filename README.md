@@ -362,15 +362,20 @@ Great! 🎉 Now that everything is set up, you're ready to begin configuring you
 1. To install **sudo**, we first need to switch to the root user. Open the terminal, type `su`, and enter the root password when prompted. Once logged in as root, run the command `apt install sudo` to install the required package. After installation, restart the machine to apply the changes. Use the command `sudo reboot` to reboot the system and wait for it to restart.
 ![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%202.19.55%20PM.png)
 
-2. Once rebooted we need to re-enter the encryption and user passwords. To make sure we installed sudo correctly, we will enter the root user again and enter the command sudo -V. This command will, in addition to showing the version of sudo, also display the arguments passed to configure when creating sudo and plugins that can display more information. Optional: Since the output of the command is quite long, if we want to see it in full we should redirect its output to a file sudo -V > file.txt and then edit the nano file.txt. Or put | more after the command.
-![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%202.33.24%20PM.png)
+2. After rebooting, re-enter the encryption and user passwords. To ensure sudo was installed correctly, log in as the root user again and run the command `sudo -V`, this will show the sudo version, along with the configuration arguments and available plugins that provide additional details. Next, switch to the root user using `su -`. Then, attempt to create a user with the same name as the non-root user currently logged in `sudo adduser your_login`. Since the user was already created during the installation, you should receive a message indicating that the user already exists.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%209.49.37%20AM.png)
 
+ 3. Next, we need to create a new group called user42. To do this, run the following command `sudo addgroup user42`, this will add the new group to the system.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.01.05%20AM.png)
 
+4. 🤔 Have you heard of **GID**? It stands for **Group Identifier**—essentially the unique ID assigned to each group in Unix-like systems. Similar to how users are given a **UID** (User ID), groups are identified by their **GID**. This identifier is key for managing permissions and access control, allowing users in the same group to collaborate and share resources seamlessly. Think of the **GID** as the group’s digital signature, ensuring efficient organization and coordination within the system.
 
+🤔 Was the group created successfully? Yes, since no error message appeared, the group has been created properly. To confirm, you can use the command `getent group group_name`.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.02.46%20AM.png)
+Running the command `cat /etc/group` will display the contents of the **/etc/group** file, which includes a list of all groups on your system, along with their **GID** and members. The output will look something like this:
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.05.06%20AM.png)
 
-
-
-
+5. 
 
 
 
