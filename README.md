@@ -391,7 +391,10 @@ Running the command `cat /etc/group` will display the contents of the **/etc/gro
 
 ❗❗For more details, check the [Guide for Virtual Machine and Linux Administration](Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.md), where you'll find explanations on all the concepts you'll need to learn.
 
-1. The first thing, we’ll install the primary connectivity tool for remote login using the SSH protocol: OpenSSH. To install it, we’ll enter the following command `sudo apt install openssh-server`. When prompted with a confirmation message, type Y to proceed, and then wait for the installation to complete.
+1. The first step is to update the package repositories we defined in the /etc/apt/sources.list file. To do this, run the following command in your terminal: `sudo apt update`. This command refreshes the list of available packages from the repositories, ensuring that the system is aware of the latest versions and updates.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.05.48%20PM.png)
+
+2. Next, we’ll install the primary connectivity tool for remote login using the SSH protocol: OpenSSH. To install it, we’ll enter the following command `sudo apt install openssh-server`. When prompted with a confirmation message, type Y to proceed, and then wait for the installation to complete.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.23.27%20AM.png)
 After running the installation command, you should see an output similar to the following:
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.24.21%20AM.png)
@@ -404,7 +407,7 @@ This confirms that SSH is up and running.
 The following image illustrates the vim installation stage.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.37.44%20AM.png)
 This command below is to open /etc/ssh/sshd_config
-![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.19.21%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.10.30%20PM.png)
 You have to see as in the picture
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.20.12%20AM.png)
 
@@ -420,7 +423,7 @@ After making these changes, save the file and exit the editor with `ESC` and `:w
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.22.05%20AM.png)
 
 3. Next, we need to edit the file located at: `/etc/ssh/ssh_config`
-![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.31.02%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.12.04%20PM.png)
 Uncoment the Port 22 and change it to 4242
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.33.13%20AM.png)
 
@@ -439,7 +442,7 @@ This confirms that SSH is now operating on Port 4242 as intended.
 
 1.  To get started, the first step is to install UFW. Open your terminal and run the following command: `sudo apt install ufw`
 When prompted, type 'y' to confirm that you want to install the package, and then wait for the installation to complete. This will prepare your system for configuring the firewall and enhancing its security.
-![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.39.19%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.14.46%20PM.png)
 
 2- After installing UFW, the next crucial step is to enable it. To do so, run the following command in your terminal: `sudo ufw enable`
 Upon execution, you should receive a confirmation message indicating that the firewall is now active. This ensures your system is better protected against unauthorized access, enhancing its overall security.
@@ -466,12 +469,12 @@ This ensures that all sudo activities are logged centrally, which is essential f
 Execute the following command in your terminal to open the file for editing: `vim /etc/sudoers.d/sudo_config`
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.47.19%20AM.png)
 This step allows you to securely and effectively configure password policies within the sudo_config file.
-![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.03.55%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.26.35%20PM.png)
 
 ## Step 11: Strong Password Policy Settings 
 
 1. The first step will be to edit the login.defs file.
-![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.08.12%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.28.50%20PM.png)
 
 2. In the sudo_config file, we'll set the password expiration policies. To do this, modify the following lines:
 Change: `PASS_MAX_DAYS 99999` To: `PASS_MAX_DAYS 30`
