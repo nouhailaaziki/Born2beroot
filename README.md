@@ -29,6 +29,8 @@ At 1337, **VirtualBox** is already available on the macOS devices, so you likely
 - **Operating Systems**: Familiarize yourself with what operating systems are and their importance in managing computer hardware and software.
 - **Hypervisor**: Discover the role of a hypervisor and how it enables virtualization by managing virtual machines.
 
+❗❗For more details, check the [Guide for Virtual Machine and Linux Administration](Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.md), where you'll find explanations on all the concepts you'll need to learn.
+
 ## Step 2: Selecting the Operating System
 ---
 
@@ -51,6 +53,8 @@ When considering the operating system for the "**Born2beroot**" project, **Debia
 7. **Current Version**: The most recent stable version of Debian, as of this guide’s writing, is Debian 12.5. You can download the image from [this link](https://www.debian.org/download).
 
 In conclusion, Debian offers a dependable, secure, and well-documented platform that fits perfectly with the project’s needs. It’s an excellent choice for gaining hands-on experience in system administration while ensuring your environment is well-supported and aligned with the project’s goals.
+
+❗❗For more details, check the [Guide for Virtual Machine and Linux Administration](Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.md), where you'll find explanations on all the concepts you'll need to learn.
 
 ## Step 3: Creating a New Virtual Machine in Oracle VirtualBox
 ---
@@ -370,6 +374,8 @@ Great! 🎉 Now that everything is set up, you're ready to begin configuring you
 
 4. ```🤔 Have you heard of **GID**? It stands for **Group Identifier**—essentially the unique ID assigned to each group in Unix-like systems. Similar to how users are given a **UID** (User ID), groups are identified by their **GID**. This identifier is key for managing permissions and access control, allowing users in the same group to collaborate and share resources seamlessly. Think of the **GID** as the group’s digital signature, ensuring efficient organization and coordination within the system.```
 
+❗❗For more details, check the [Guide for Virtual Machine and Linux Administration](Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.md), where you'll find explanations on all the concepts you'll need to learn.
+
 🤔 Was the group created successfully? Yes, since no error message appeared, the group has been created properly. To confirm, you can use the command `getent group group_name`.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.02.46%20AM.png)
 Running the command `cat /etc/group` will display the contents of the **/etc/group** file, which includes a list of all groups on your system, along with their **GID** and members. The output will look something like this:
@@ -382,6 +388,8 @@ Running the command `cat /etc/group` will display the contents of the **/etc/gro
 ---
 
 ```🔒 **SSH**, or **Secure Shell**, serves as both a protocol and a tool for securely accessing remote servers. It establishes an encrypted communication channel, ensuring that all data exchanged between the client and the server remains confidential and intact. This strong encryption makes SSH indispensable for secure remote management and file transfers.```
+
+❗❗For more details, check the [Guide for Virtual Machine and Linux Administration](Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.md), where you'll find explanations on all the concepts you'll need to learn.
 
 1. The first thing, we’ll install the primary connectivity tool for remote login using the SSH protocol: OpenSSH. To install it, we’ll enter the following command `sudo apt install openssh-server`. When prompted with a confirmation message, type Y to proceed, and then wait for the installation to complete.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.23.27%20AM.png)
@@ -424,6 +432,58 @@ This confirms that SSH is now operating on Port 4242 as intended.
 ---
 
 
-🔒 **UFW** (Uncomplicated Firewall) is a user-friendly front-end for managing **iptables**, the default firewall configuration tool used by many Linux distributions. It simplifies the process of configuring firewall rules through an intuitive command-line interface. This makes it easy for users to control network traffic and strengthen system security with just a few commands.
+```🔒 **UFW** (Uncomplicated Firewall) is a user-friendly front-end for managing **iptables**, the default firewall configuration tool used by many Linux distributions. It simplifies the process of configuring firewall rules through an intuitive command-line interface. This makes it easy for users to control network traffic and strengthen system security with just a few commands.```
+```With UFW, even users with limited experience in firewall management can quickly set up and maintain strong firewall policies, protecting their systems from unauthorized access and potential threats.```
 
-With UFW, even users with limited experience in firewall management can quickly set up and maintain strong firewall policies, protecting their systems from unauthorized access and potential threats.
+❗❗For more details, check the [Guide for Virtual Machine and Linux Administration](Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.md), where you'll find explanations on all the concepts you'll need to learn.
+
+1.  To get started, the first step is to install UFW. Open your terminal and run the following command: `sudo apt install ufw`
+When prompted, type 'y' to confirm that you want to install the package, and then wait for the installation to complete. This will prepare your system for configuring the firewall and enhancing its security.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.39.19%20AM.png)
+
+2- After installing UFW, the next crucial step is to enable it. To do so, run the following command in your terminal: `sudo ufw enable`
+Upon execution, you should receive a confirmation message indicating that the firewall is now active. This ensures your system is better protected against unauthorized access, enhancing its overall security.
+Now, let’s configure the firewall to allow connections through port 4242. Run the following command in your terminal: `sudo ufw allow 4242`
+This will allow traffic on port 4242, ensuring your desired services or applications can communicate freely.
+Finally, let’s verify that everything is set up correctly by checking the status of the firewall. To do this, execute the command: `sudo ufw status`
+You should see a list of allowed connections, with port 4242 listed as allowed. This confirms that your firewall is effectively protecting your system while allowing the necessary communication.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.41.21%20AM.png)
+
+## Step 10: set a strong password for your sudo privileges
+
+1. Next, we’ll create a file at the path /etc/sudoers.d/ to store our password configuration. For clarity, we’ll name the file sudo_config.
+
+Execute the following command in your terminal to create the file: `touch /etc/sudoers.d/sudo_config`
+This file will be important for securely managing your sudo password settings.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.44.54%20AM.png)
+
+2. To fulfill the requirement of storing all sudo commands' input and output, we need to create a directory named sudo within the /var/log path.
+Run the following command in your terminal to create this directory: `mkdir /var/log/sudo`
+This ensures that all sudo activities are logged centrally, which is essential for system administration and security monitoring.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.45.47%20AM.png)
+
+3. Now, let's edit the file we created in the previous step. As mentioned, you can use any text editor, but for simplicity, we'll use Nano.
+Execute the following command in your terminal to open the file for editing: `vim /etc/sudoers.d/sudo_config`
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2011.47.19%20AM.png)
+This step allows you to securely and effectively configure password policies within the sudo_config file.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.03.55%20PM.png)
+
+## Step 11: Strong Password Policy Settings 
+
+1. The first step will be to edit the login.defs file.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.08.12%20PM.png)
+
+2. In the sudo_config file, we'll set the password expiration policies. To do this, modify the following lines:
+Change: `PASS_MAX_DAYS 99999` To: `PASS_MAX_DAYS 30`
+And change: `PASS_MIN_DAYS 0` To: `PASS_MIN_DAYS 2`
+These changes ensure that the maximum password age is set to 30 days, requiring users to change their passwords periodically, and the minimum password age is set to 2 days, preventing users from changing their password too quickly after a reset.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.18.33%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.19.56%20PM.png)
+
+
+
+
+
+
+
+
