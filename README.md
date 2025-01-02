@@ -483,10 +483,46 @@ These changes ensure that the maximum password age is set to 30 days, requiring 
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.18.33%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2012.19.56%20PM.png)
 
+Now, let’s delve into configuring password policies:
 
+- **PASS_MAX_DAYS**: This parameter sets the maximum number of days a password can be used before it expires. After this period, the user will be required to change their password. For example `PASS_MAX_DAYS 30`. This means the password will expire after 30 days.
 
+- **PASS_MIN_DAYS**: This parameter defines the minimum number of days a password must be used before it can be changed again. It prevents users from changing their passwords too frequently. For example `PASS_MIN_DAYS 2`. This means the user must wait at least 2 days before changing their password again.
 
+- **PASS_WARN_AGE**: This setting triggers a warning message to users, notifying them of their password’s impending expiration within the specified number of days. For example `PASS_WARN_AGE 7`. This means users will be warned 7 days before their password expires.
 
+By configuring these parameters, you ensure better control over password management and security in your system.
 
+3. To continue with the configuration and enhance password security, we need to install the necessary packages. Run the following command in your terminal `apt install libpam-pwquality`. When prompted, type 'Y' to confirm the installation and wait for the process to complete.
+These packages provide additional password quality checking capabilities, allowing you to enforce stronger password policies and improve your system's security.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.31.05%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.31.50%20PM.png)
 
+4. To proceed with configuring password policies, we need to modify the common-password file. This file controls how the system handles password settings. Use the following command to open the file for editing `vim /etc/pam.d/common-password`. Once the file is open, you can make the necessary changes to configure password policies effectively. This step will help ensure that the system enforces the appropriate password quality and security settings.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.33.11%20PM.png)
 
+5. After the retry=3 option in the /etc/pam.d/common-password file, we need to add the following commands to enforce stronger password policies:
+
+```bash
+minlen=10
+ucredit=-1
+dcredit=-1
+lcredit=-1
+maxrepeat=3
+reject_username
+difok=7
+enforce_for_root
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.33.38%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.38.08%20PM.png)
+Here’s what each parameter does:
+
+- `minlen=10`: Sets the minimum password length to 10 characters.
+- `ucredit=-1`: Requires at least 1 uppercase letter in the password.
+- `dcredit=-1`: Requires at least 1 digit (number) in the password.
+- `lcredit=-1`: Requires at least 1 lowercase letter in the password.
+- `maxrepeat=3`: Limits the maximum number of consecutive identical characters to 3.
+- `reject_username`: Ensures that the password does not contain the username.
+- `difok=7`: Requires at least 7 characters to be different from the previous password.
+- `enforce_for_root`: Enforces these password rules even for the root user.
+These settings help to enforce robust password policies that enhance the overall security of your system.
