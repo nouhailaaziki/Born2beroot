@@ -1,5 +1,4 @@
-# Welcome to Your Guide for Virtual Machine and Linux Administration!
-
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=180&text=Welcome%20to%20Your%20Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.&fontSize=24&fontAlignY=32&animation=twinkling" alt="header" width="100%" />
 This guide is designed to help you find clear and detailed answers to common questions related to setting up, configuring, and managing virtual machines, as well as Linux systems like Rocky and Debian. Whether you are a student preparing for an evaluation or a professional looking for quick solutions, you'll find useful information here to enhance your understanding of virtual machines, package managers, security frameworks (like SELinux and APPArmor), and much more.
 
 We cover everything from basic system setup, partitions, and networking, to advanced concepts like firewall rules, SSH remote access, and the implementation of services like Nginx or Apache. My goal is to make technical knowledge easily accessible for everyone.
