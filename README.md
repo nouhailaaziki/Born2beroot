@@ -640,7 +640,6 @@ To count the number of commands executed with `sudo`, use the `journalctl` comma
 
 Verify this command by executing it, running a sudo command, and checking if the count increases.
 
-### 13- Final Script
 ⚠️ Reminder: Do not copy and paste these commands without fully understanding them! ⚠️
 
 To create the Bash file for the monitoring script, connect via SSH, switch to superuser mode, and use `vim monitoring.sh`.
