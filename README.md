@@ -829,10 +829,15 @@ In essence, this part of the script ensures that the system monitoring task is e
 - Script Output: Each time the script runs, it gathers various system metrics (architecture, CPU, memory, disk usage, etc.) and uses the wall command to broadcast the information to all logged-in users on the terminal.
 
 In short, every time your system reboots, this script runs in the background and continuously monitors your system's status, updating every 10 minutes.
+
+## Step 14: Wordpress & services configuration
+
+
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.01.58%20PM.png)
+
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.03.54%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.05.10%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.06.37%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.01.58%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.31.40%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.35.23%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.40.03%20PM.png)
