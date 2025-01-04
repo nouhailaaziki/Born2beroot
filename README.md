@@ -722,8 +722,41 @@ done
 After successfully running the script, you should see output that gives you a detailed summary of your system's performance and configuration. The following is an example of what you might see after executing the monitoring script:
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.55.32%20AM.png)
 
+## Step 14: 📅 Crontab Setup for Monitoring Script
+---
+
+1. What is Crontab?
+Crontab (Cron Table) is a configuration file that schedules jobs (commands or scripts) to run at specific times or intervals. Each line in the crontab file represents a task that will be executed automatically at the designated time.
+
+2. Open Crontab for Editing
+To schedule the monitoring script to run at regular intervals, you'll need to edit the crontab file. Use the following command:
+
+```bash
+crontab -e
+```
+or
+```bash
+crontab -u root -e
+```
+This opens the crontab configuration file in your default text editor.
+you will be prompted to select an editor, choose the first one as it is the easiest.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.49.07%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.57.30%20PM.png)
+
+3. Define the Frequency of Execution
+Crontab uses a specific format to schedule tasks. The format consists of five fields:
+
+```scss
+*    *    *    *    *  command_to_be_executed
+-    -    -    -    -
+|    |    |    |    |
+|    |    |    |    |  
+|    |    |    |    ----- Day of the week (0 - 7) (Sunday is both 0 and 7)
+|    |    |    --------- Month (1 - 12)
+|    |    --------------- Day of the month (1 - 31)
+|    -------------------- Hour (0 - 23)
+------------------------- Minute (0 - 59)
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2011.12.43%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.03.54%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.05.10%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.06.37%20PM.png)
