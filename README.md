@@ -756,7 +756,48 @@ Crontab uses a specific format to schedule tasks. The format consists of five fi
 |    -------------------- Hour (0 - 23)
 ------------------------- Minute (0 - 59)
 ```
+Example:
+If you want the script to run every 10 minutes, add the following line to the crontab file:
+```bash
+*/10 * * * * /path/to/your/script/monitoring.sh
+```
+In this example:
+*/10: Runs the script every 10 minutes.
+
+Inside the file, you will add the following command: 
+```@reboot sh /home/your_login/monitoring.sh```
+This will ensure that the script runs once every 10 minutes after a reboot.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2011.12.43%20AM.png)
+In this case, the command ```@reboot sh /home/your_login/monitoring.sh``` added to your crontab makes your script run automatically at system startup. Here's how crontab works in this context:
+
+- @reboot: This is a special time specification in crontab that schedules your script to run every time the system starts or reboots. It ensures your monitoring script starts as soon as the system is up and running.
+
+- sh /home/noaziki/monitoring.sh: This part of the crontab entry specifies the command to be executed. In this case, it's telling the system to run your Bash script (monitoring.sh) using sh.
+
+- Script Execution: When your system boots, crontab triggers the script located at /home/noaziki/monitoring.sh.
+
+Do you remember this part of the script?
+```bash
+while true;
+do
+	sleep 599
+done
+```
+Let's analyze it now.
+	- `while true;`: This creates an infinite loop. The condition true always evaluates as "true," meaning the loop will never exit on its own. It's used when you want a section of code to run repeatedly without stopping until the program is manually terminated or the system shuts down.
+
+	- `do`: This marks the beginning of the commands that will be executed inside the loop. In your case, everything between do and done will repeat.
+
+	- `sleep 599`: The sleep command pauses the execution of the script for 599 seconds (about 10 minutes) each time the loop iterates. After this 10-minute pause, the script continues to gather system metrics and then broadcasts the results.
+
+How It Works:
+	- Loop Cycle: The script enters the loop (while true) and then sleeps for 599 seconds. After the sleep period ends, it collects the system metrics and displays them using the wall command.
+	- Repeat: After displaying the metrics, the loop starts again, waits for another 599 seconds, and repeats the process indefinitely.
+In essence, this part of the script ensures that the system monitoring task is executed approximately every 10 minutes.
+
+- Script Output: Each time the script runs, it gathers various system metrics (architecture, CPU, memory, disk usage, etc.) and uses the wall command to broadcast the information to all logged-in users on the terminal.
+
+In short, every time your system reboots, this script runs in the background and continuously monitors your system's status, updating every 10 minutes.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.03.54%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.05.10%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.06.37%20PM.png)
