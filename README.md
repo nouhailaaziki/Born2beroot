@@ -745,6 +745,35 @@ you will be prompted to select an editor, choose the first one as it is the easi
 3. Define the Frequency of Execution
 Crontab uses a specific format to schedule tasks. The format consists of five fields:
 
+Crontab Syntax:
+```bash
+m h dom mon dow command
+```
+### Fields Explained:
+- m (Minute):
+The minute when the command should run.
+	- Valid values: 0-59
+	- Example: 5 means the task will run at the 5th minute of the hour.
+- h (Hour):
+The hour when the command should run (24-hour format).
+	- Valid values: 0-23
+	- Example: 14 means the task will run at 2:00 PM.
+- dom (Day of Month):
+The specific day of the month when the command should run.
+	- Valid values: 1-31
+	- Example: 15 means the task will run on the 15th day of the month.
+- mon (Month):
+The specific month when the command should run.
+	- Valid values: 1-12 or abbreviated names (jan, feb, etc.)
+	- Example: 7 means the task will run in July.
+- dow (Day of Week):
+The day of the week when the command should run.
+	- Valid values: 0-7 (where 0 and 7 both represent Sunday), or abbreviated names (sun, mon, etc.)
+	- Example: 5 or fri means the task will run on Friday.
+- command:
+The actual script or command you want to execute.
+
+### Example
 ```scss
 *    *    *    *    *  command_to_be_executed
 -    -    -    -    -
@@ -768,13 +797,13 @@ Inside the file, you will add the following command:
 ```@reboot sh /home/your_login/monitoring.sh```
 This will ensure that the script runs once every 10 minutes after a reboot.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2011.12.43%20AM.png)
-In this case, the command ```@reboot sh /home/your_login/monitoring.sh``` added to your crontab makes your script run automatically at system startup. Here's how crontab works in this context:
+In this case, the command `@reboot sh /home/your_login/monitoring.sh` added to your crontab makes your script run automatically at system startup. Here's how crontab works in this context:
 
-- @reboot: This is a special time specification in crontab that schedules your script to run every time the system starts or reboots. It ensures your monitoring script starts as soon as the system is up and running.
+- `@reboot`: This is a special time specification in crontab that schedules your script to run every time the system starts or reboots. It ensures your monitoring script starts as soon as the system is up and running.
 
-- sh /home/noaziki/monitoring.sh: This part of the crontab entry specifies the command to be executed. In this case, it's telling the system to run your Bash script (monitoring.sh) using sh.
+- `sh /home/noaziki/monitoring.sh`: This part of the crontab entry specifies the command to be executed. In this case, it's telling the system to run your Bash script (monitoring.sh) using sh.
 
-- Script Execution: When your system boots, crontab triggers the script located at /home/noaziki/monitoring.sh.
+- `Script Execution`: When your system boots, crontab triggers the script located at /home/noaziki/monitoring.sh.
 
 Do you remember this part of the script?
 ```bash
@@ -784,15 +813,18 @@ do
 done
 ```
 Let's analyze it now.
-	- `while true;`: This creates an infinite loop. The condition true always evaluates as "true," meaning the loop will never exit on its own. It's used when you want a section of code to run repeatedly without stopping until the program is manually terminated or the system shuts down.
 
-	- `do`: This marks the beginning of the commands that will be executed inside the loop. In your case, everything between do and done will repeat.
+- `while true;`: This creates an infinite loop. The condition true always evaluates as "true," meaning the loop will never exit on its own. It's used when you want a section of code to run repeatedly without stopping until the program is manually terminated or the system shuts down.
 
-	- `sleep 599`: The sleep command pauses the execution of the script for 599 seconds (about 10 minutes) each time the loop iterates. After this 10-minute pause, the script continues to gather system metrics and then broadcasts the results.
+- `do`: This marks the beginning of the commands that will be executed inside the loop. In your case, everything between do and done will repeat.
+
+- `sleep 599`: The sleep command pauses the execution of the script for 599 seconds (about 10 minutes) each time the loop iterates. After this 10-minute pause, the script continues to gather system metrics and then broadcasts the results.
 
 How It Works:
-	- Loop Cycle: The script enters the loop (while true) and then sleeps for 599 seconds. After the sleep period ends, it collects the system metrics and displays them using the wall command.
-	- Repeat: After displaying the metrics, the loop starts again, waits for another 599 seconds, and repeats the process indefinitely.
+
+- Loop Cycle: The script enters the loop (while true) and then sleeps for 599 seconds. After the sleep period ends, it collects the system metrics and displays them using the wall command.
+
+- Repeat: After displaying the metrics, the loop starts again, waits for another 599 seconds, and repeats the process indefinitely.
 In essence, this part of the script ensures that the system monitoring task is executed approximately every 10 minutes.
 
 - Script Output: Each time the script runs, it gathers various system metrics (architecture, CPU, memory, disk usage, etc.) and uses the wall command to broadcast the information to all logged-in users on the terminal.
