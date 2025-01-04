@@ -526,13 +526,202 @@ Here’s what each parameter does:
 - `difok=7`: Requires at least 7 characters to be different from the previous password.
 - `enforce_for_root`: Enforces these password rules even for the root user.
 These settings help to enforce robust password policies that enhance the overall security of your system.
+
+## Step 12: Connect from SSH
+---
+
+1. Before closing the virtual machine, it’s important to save a snapshot through VirtualBox’s configuration settings. This will allow you to easily revert to the current state of the machine if needed.
+
+To do this, navigate to the Snapshot Manager in VirtualBox and create a new snapshot with a descriptive name. This step ensures that your progress and configurations are preserved.
+
+🔒 Next, to establish SSH connectivity, start by closing the virtual machine. Then, reopen VirtualBox and navigate to the machine's configuration settings. From there, we will adjust the network settings to enable SSH access for the virtual machine.
+
+This step prepares the virtual machine for remote administration through SSH.
+
+Once you're in the virtual machine's configuration settings in VirtualBox, navigate to the Network tab. Here, you'll need to configure the port for SSH connectivity:
+
+Under Adapter 1, ensure the network is set to NAT.
+
+Click on Advanced and then Port Forwarding.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.44.36%20PM.png)
+In the Port Forwarding rules window, add a new rule:
+
+Protocol: TCP
+Host IP: Leave this blank.
+Host Port: Choose a port number on your host machine, in our case we will choose 4242.
+Guest IP: Leave this blank.
+Guest Port: Set this to 4242.
+This will forward traffic from port 4242 on your host machine to port 4242 on the virtual machine, enabling SSH connectivity.
+
+Once this is set, click OK to save the changes, and you’ll be ready to connect to your virtual machine via SSH using the specified port.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%201.49.04%20PM.png)
+
+2. To connect to the virtual machine from the host machine, open a terminal on the host and type the following command:
+```bash
+ssh your_login@localhost -p 4242
+```
+This command initiates an SSH connection to the virtual machine, specifying the username and port 4242. You will be prompted to enter the password for the user. Once authenticated, you should see the login prompt, which typically appears in green, indicating a successful connection.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.23.18%20PM.png)
+Ensure your virtual machine is running while you attempt to connect via SSH.
+
+## Step 13: Writing the Bash Monitoring Script📜
+---
+
+Entering this section requires close attention to detail. It's essential to fully understand everything presented here. Don't try to take shortcuts! During the evaluation, you'll most likely be asked about the script's functionality or how it operates.
+
+### What is a script?
+A script is a file containing a sequence of commands. When executed, these commands perform specific tasks outlined in the script.
+
+### 1- System Architecture
+To display the system's architecture, use the `uname -a` command. This command provides comprehensive information about the system, except in cases where the CPU or platform is unknown.
+
+### 2- Physical Cores
+To find out the number of physical cores, access the `/proc/cpuinfo` file, which contains information about the CPU, such as type, brand, model, and performance. You can count the physical cores using the command:
+```grep "physical id" /proc/cpuinfo | wc -l```
+
+### 3- Virtual Cores
+Similarly, to determine the number of virtual cores, use the `/proc/cpuinfo` file again. This time, run the command:
+```grep processor /proc/cpuinfo | wc -l```
+to count the number of virtual cores.
+
+### 4- RAM
+To view details about the RAM, use the `free` command, which provides real-time data about RAM usage, available space, and reserved resources. For more detailed information, run `free --help`. To display RAM in megabytes, use:
+`free --mega`
+
+After running the command, filter the output to show only relevant data. To get the used memory, run:
+```free --mega | awk '$1 == "Mem:" {print $3}'```
+
+To get the total memory, run a similar command but print the second word instead of the third:
+```free --mega | awk '$1 == "Mem:" {print $2}'```
+
+Finally, to calculate the percentage of used memory, run this command, which formats the output to two decimal places:
+```free --mega | awk '$1 == "Mem:" {printf("(%.2f%%)\n", $3/$2*100)}'```
+
+### 5- Disk Memory
+To view the disk memory usage, use the `df` command. Running `df -m` displays the memory in megabytes. Filter the output using `grep` and `awk` to show only relevant information. To calculate the used disk space, use:
+```df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use}'```
+
+To get the total disk space, sum the values in the second column and convert the result to gigabytes if needed:
+```df -m | grep "/dev/" | grep -v "/boot" | awk '{total_size += $2} END {print total_size/1024}'```
+
+To calculate the percentage of used disk memory, combine the previous commands:
+```df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%.2f%%)\n", use/total*100)}'```
+
+### 6- CPU Usage Percentage
+To find the CPU usage percentage, use the vmstat command to gather system statistics. Specify an interval and use tail and awk to extract the relevant data. For example:
+```vmstat 1 4 | tail -1 | awk '{print $15}'```
+This gives you the available CPU percentage.
+
+Subtract this value from 100 to get the CPU usage percentage, then format the result to one decimal place and append a `%` symbol.
+
+### 7- Last Reboot
+To check the date and time of the last system reboot, use the ```who -b``` command. Filter the output to show only the relevant information using `awk`:
+```who -b | awk '$1 == "system" {print $3 " " $4}'```
+
+### 8- LVM Active
+To determine if LVM (Logical Volume Manager) is active, use the `lsblk `command to display block device information. Filter the output to search for LVM and print "Yes" or "No" accordingly. The command is:
+```if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi```
+
+### 9- TCP Connections
+To determine the number of established TCP connections, use the ```ss``` command, which replaces the obsolete `netstat`. Run the command with the `-ta` flag to display only TCP connections. Then filter with `grep` to find established connections, and use `wc -l` to count them:
+```ss -ta | grep ESTAB | wc -l```
+
+### 10- Number of Users
+To count the number of active `users`, use the users command, which lists logged-in users. Then use ```wc -w``` to count the words:
+```users | wc -w```
+
+### 11- IP Address & MAC Address
+To get the IP address of the host, use the ```hostname -I``` command. For the MAC address, use the ```ip link``` command to show network interfaces. Filter the output to display only the MAC address:
+```ip link | grep "link/ether" | awk '{print $2}'```
+
+### 12- Number of Commands Executed with sudo
+To count the number of commands executed with `sudo`, use the `journalctl` command, which collects system logs. Filter the results with `_COMM=sudo` and refine them with grep COMMAND. Finally, count the entries with `wc -l`:
+```journalctl _COMM=sudo | grep COMMAND | wc -l```
+
+Verify this command by executing it, running a sudo command, and checking if the count increases.
+
+### 13- Final Script
+⚠️ Reminder: Do not copy and paste these commands without fully understanding them! ⚠️
+
+To create the Bash file for the monitoring script, connect via SSH, switch to superuser mode, and use `vim monitoring.sh`.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.38.48%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.28.59%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.46.02%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.48.16%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.27.50%20PM.png)
+
+Once you’re in the vim editor, press i to enter insert mode and then start writing the script.
+!!Ensure you understand every command and section of the script, as you’ll likely need to explain it during evaluation.!!
+
+And write the script inside like below
+
+```bash
+#!/bin/bash
+
+while true;
+do
+	sleep 599
+
+# ARCHITECTURE
+architecture=$(uname -a)
+
+# CPU PHYSICAL
+cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
+
+# CPU VIRTUAL
+cpu_virtual=$(grep "processor" /proc/cpuinfo | wc -l)
+
+# MEMORY USAGE
+ram_total=$(free --mega | awk '$1 == "Mem:" {print $2}')
+ram_use=$(free --mega | awk '$1 == "Mem:" {print $3}')
+ram_percent=$(free --mega | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')
+
+# DISK USAGE
+disk_total=$(df -h | grep /dev/ | grep -v "/boot" | awk '{disk_t += $2} END {printf ("%.1fGb\n"), disk_t/1024}')
+disk_use=$(df -h | grep /dev/ | grep -v "/boot" | awk '{disk_u += $3} END {printf "%d", disk_u}')
+disk_percent=$(df -h | grep /dev/ | grep -v "/boot" | awk '{disk_u += $3} {disk_t+=$2} END {printf("%d"), disk_u/disk_t*100}')
+
+# CPU LOAD
+cpu1=$(vmstat 1 2 | tail -1 | awk '{print $15}')
+cpu_op=$(expr 100 - $cpu1)
+cpu_fin=$(printf "%.1f" $cpu_op)
+
+# LAST BOOT
+last_boot=$(who -b | awk '$1 == "system" {print $3 " " $4}')
+
+# LVM USE
+lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
+
+# CONNECTIONS TCP
+connections_tcp=$(ss -ta | grep ESTAB | wc -l)
+
+# USER LOG
+user_log=$(users | wc -w)
+
+# NETWORK
+ip=$(hostname -I)
+mac=$(ip link | grep "link/ether" | awk '{print $2}')
+
+# SUDO
+sudo_count=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+
+wall "
+	#Architecture: $architecture
+	#CPU physical: $cpu_physical
+	#vCPU: $cpu_virtual
+	#Memory Usage: $ram_use/${ram_total}MB ($ram_percent%)
+	#Disk Usage: $disk_use/$disk_total ($disk_percent%)
+	#CPU load: $cpu_fin%
+	#Last boot: $last_boot
+	#LVM use: $lvm_use
+	#Connections TCP: $connections_tcp ESTABLISHED
+	#User log: $user_log
+	#Network: IP $ip($mac)
+	#Sudo: $sudo_count cmd
+"
+done
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.39.29%20AM.png)
+
+After successfully running the script, you should see output that gives you a detailed summary of your system's performance and configuration. The following is an example of what you might see after executing the monitoring script:
+![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.55.32%20AM.png)
+
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.49.07%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.57.30%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.03.54%20PM.png)
@@ -553,4 +742,4 @@ These settings help to enforce robust password policies that enhance the overall
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.58.26%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%209.04.32%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%209.05.23%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.23.18%20PM.png)
+
