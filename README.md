@@ -844,7 +844,7 @@ In short, every time your system reboots, this script runs in the background and
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.41.52%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.44.40%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.46.13%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.48.11%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-38%20at%208.48.11%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.49.47%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.51.41%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.56.34%20PM.png)
