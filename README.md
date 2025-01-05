@@ -149,7 +149,7 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 6. Now, you’ll be asked to provide a nickname or username for the non-root user. I’ll proceed with my intra username, **noaziki**, as the username for the new user.
 ![Username](screen_shots_guide/username.png)
 
-7. You’ll need to choose a password for the non-root user. I’m proceeding with a new one, but if you think you might forget it, it's better to use the same password as the one for the Root User 😊.
+7. You’ll need to choose a password for the non-root user. I’m proceeding with a new one, but if you think you might forget it, it's better to use the same password as the one for the Root User.
 ![User password](screen_shots_guide/user_password.png)
 
 8. You’ll need to confirm the password for the non-root user. As I showed when setting the root password, you can use the arrows to navigate to the **Show Password** option and press the space bar to display it, ensuring it’s correct.
@@ -372,11 +372,11 @@ Great! 🎉 Now that everything is set up, you're ready to begin configuring you
  3. Next, we need to create a new group called user42. To do this, run the following command `sudo addgroup user42`, this will add the new group to the system.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.01.05%20AM.png)
 
-4. ```🤔 Have you heard of **GID**? It stands for **Group Identifier**—essentially the unique ID assigned to each group in Unix-like systems. Similar to how users are given a **UID** (User ID), groups are identified by their **GID**. This identifier is key for managing permissions and access control, allowing users in the same group to collaborate and share resources seamlessly. Think of the **GID** as the group’s digital signature, ensuring efficient organization and coordination within the system.```
+4. ```Have you heard of **GID**? It stands for **Group Identifier**—essentially the unique ID assigned to each group in Unix-like systems. Similar to how users are given a **UID** (User ID), groups are identified by their **GID**. This identifier is key for managing permissions and access control, allowing users in the same group to collaborate and share resources seamlessly. Think of the **GID** as the group’s digital signature, ensuring efficient organization and coordination within the system.```
 
 ❗❗For more details, check the [Guide for Virtual Machine and Linux Administration](Guide%20for%20Virtual%20Machine%20and%20Linux%20Administration.md), where you'll find explanations on all the concepts you'll need to learn.
 
-🤔 Was the group created successfully? Yes, since no error message appeared, the group has been created properly. To confirm, you can use the command `getent group group_name`.
+ Was the group created successfully? Yes, since no error message appeared, the group has been created properly. To confirm, you can use the command `getent group group_name`.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.02.46%20AM.png)
 Running the command `cat /etc/group` will display the contents of the **/etc/group** file, which includes a list of all groups on your system, along with their **GID** and members. The output will look something like this:
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-01%20at%2010.05.06%20AM.png)
@@ -564,7 +564,7 @@ This command initiates an SSH connection to the virtual machine, specifying the 
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.23.18%20PM.png)
 Ensure your virtual machine is running while you attempt to connect via SSH.
 
-## Step 13: Writing the Bash Monitoring Script📜
+## Step 13: Writing the Bash Monitoring Script
 ---
 
 Entering this section requires close attention to detail. It's essential to fully understand everything presented here. Don't try to take shortcuts! During the evaluation, you'll most likely be asked about the script's functionality or how it operates.
