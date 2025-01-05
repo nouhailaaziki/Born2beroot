@@ -155,15 +155,15 @@ In conclusion, Debian offers a dependable, secure, and well-documented platform 
 8. You’ll need to confirm the password for the non-root user. As I showed when setting the root password, you can use the arrows to navigate to the **Show Password** option and press the space bar to display it, ensuring it’s correct.
 ![Re-enter user password](screen_shots_guide/re_enter_user_password.png)
 
-### Setting Up the Partitions
+### Organizing Disk Partitions
 
-Partitioning is crucial for organizing disk space on your server. It divides the disk into separate sections, each serving a specific purpose.
+Partitioning is an essential step in structuring disk space on your server. It helps to allocate different areas of the disk for specific functions.
 
-1. **Use Entire Disk and Set Up Encrypted LVM**: This option selects guided partitioning, which will automatically partition the disk and set up encrypted Logical Volume Manager (LVM). This option is required since the project specifies the use of encrypted partitions.
+1. Choose "Use Entire Disk and Set Up Encrypted LVM": This guided option automatically partitions your disk and configures encrypted Logical Volume Manager (LVM), which is mandatory as per the project's requirements.
 
-**BUT... ⚠️❗️** If you're aiming to complete the **bonus part** of the project, you'll need to click Manual and proceed with custom partitioning. This part is a reminder for those who want to do the bonus work. If you want to follow the default process, you can skip this step and continue with the guided option.
+However!!! If you're planning to tackle the bonus section of the project, you should select "Manual" and proceed with custom partitioning. This serves as a heads-up for those interested in the bonus. Otherwise, feel free to stick with the default guided partitioning method and skip this step.
 
-I will proceed with what’s required for the bonus part, but you can choose to skip it and go straight to the guided partitioning.
+I will continue with the custom partitioning for the bonus task, but you're free to opt for the guided approach if you prefer.
 ![Partition disk](screen_shots_guide/partition_disks_manual.png)
 
 2. In this section, you’ll see a general description of your partitions and mount points. Since we haven’t created any partitions yet, we need to create a  new partition table. To do this, choose the device where you want to create the partitions. In my case, I’ll select the only available device: SCSI2 (0, 0, 0) (sda) - 33.1 GB ATA VBOX HARDDISK.
