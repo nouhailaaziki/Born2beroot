@@ -1061,16 +1061,192 @@ This will close the MariaDB session and return you to the regular command-line p
 ## Step 17: PHP
 ---
 
-![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2011.12.43%20AM.png)
+What is PHP?
+PHP (Hypertext Preprocessor) is a widely-used, open-source programming language designed primarily for web development. PHP is executed on the server side, meaning it processes requests from users and generates dynamic content such as HTML, images, and other media. It is especially powerful when combined with databases, allowing developers to create interactive and data-driven websites and applications.
+
+1. Install Necessary Packages to Run PHP-Based Web Applications
+
+To run web applications written in PHP and interact with a MySQL or MariaDB database, you need to install certain PHP packages. The following command will install the required PHP packages, including php-cgi (for running PHP scripts) and php-mysql (for connecting PHP to MySQL or MariaDB databases):
+```bash
+apt install php-cgi php-mysql
+```
+php-cgi: Installs the PHP Common Gateway Interface (CGI) module, allowing PHP to be executed on the server and generate dynamic web content.
+php-mysql: This package enables PHP to connect to and interact with MySQL or MariaDB databases, allowing PHP-based applications to store and retrieve data.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%209.57.49%20AM.png)
+
+2. Configure WordPress
+
+First, navigate to the directory where your WordPress files are stored. Then, copy the `wp-config-sample.php` file and rename it to `wp-config.php`. This file contains configuration settings required for WordPress to connect to your database.
+```bash
+cd /var/www/html
+cp wp-config-sample.php wp-config.php
+```
+This command copies the sample configuration file to the active `wp-config.php` file, which you will modify in the next step.
+
+3. Edit `wp-config.php`
+
+Now, you need to edit the `wp-config.php` file to configure the database settings so WordPress can connect to your database. Use the following command to open the file in a text editor:
+```bash
+vim wp-config.php
+```
+Inside the file, you need to modify the database details such as the database name, username, password, and host. Look for the following lines and update them as needed
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2010.23.05%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2010.33.04%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2010.36.23%20AM.png)
+Replace `'wp_database'` with the name of your database (as you created earlier).
+Replace `'your_login'` with the database username you created.
+Replace `'12345'` with the password for the user you created.
+Leave `'localhost'` as is, unless your database is hosted remotely.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2010.54.13%20AM.png)
+Save and exit the editor (`Ctrl + X`, then `Y` to confirm changes).
+
+4. Activate the FastCGI-PHP Module in Lighttpd
+
+To enhance the performance and speed of PHP-based web applications like WordPress, you need to enable the `fastcgi` module and the `fastcgi-php` module in Lighttpd.
+
+Run the following commands to enable these modules:
+```bash
+sudo lighty-enable-mod fastcgi
+sudo lighty-enable-mod fastcgi-php
+```
+Then, reload the Lighttpd service to apply the changes:
+```bash
+sudo service lighttpd force-reload
+```
+This will activate the modules and improve the performance of PHP processing.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2010.36.23%20AM.png)
+
+5. Go to Your Browser and Type `localhost`
+
+Once the configuration is complete, open a browser and type `localhost` in the address bar. This should direct you to the WordPress installation page.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2010.55.30%20AM.png)
+
+6. Fill in the Fields and Press "Install WordPress"
+
+On the WordPress installation page, you’ll be prompted to enter details such as the site title, admin username, password, and email address. Fill in the fields and click on the Install WordPress button.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.06.19%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.09.53%20AM.png)
+
+7. Sign In to Access the WordPress Dashboard
+
+After the installation is complete, you can log in to your WordPress site using the admin username and password you just set. Go to:
+```arduino
+http://localhost/wp-login.php
+```
+Enter your credentials, and you’ll be redirected to the WordPress Dashboard, where you can start managing and customizing your site.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.10.46%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.12.23%20AM.png)
+
+## Step 18: Installing FTP as an Optional Service
+---
+
+FTP (File Transfer Protocol) is an optional service that can be useful for managing files on your server. In this case, we’ll install and configure vsftpd, a secure and stable FTP server.
+
+1. Install FTP, Check if it is Installed, and Allow Port 21
+First, you need to install `vsftpd`, which is the FTP service we will configure. Then, ensure that the installation was successful and allow traffic through port 21, the default FTP port.
+
+Run the following commands:
+```bash
+sudo apt install vsftpd
+```
+Verify if vsftpd is installed:
+```bash
+dpkg -l | grep vsftpd
+```
+Allow traffic through port 21 using the firewall (UFW):
+```bash
+sudo ufw allow 21
+```
+2. Configure FTP by Editing vsftpd.conf
+To configure vsftpd, you need to edit its configuration file. Open the file using a text editor:
+```bash
+sudo nano /etc/vsftpd.conf
+```
+Look for the following line and uncomment it (remove the #):
+```bash
+#write_enable=YES
+```
+After editing, it should look like this:
+```bash
+write_enable=YES
+```
+This allows users to upload files to the FTP server.
+
+Set Up FTP Directory Structure and Permissions
+Navigate to the user’s home directory and set up the FTP folder structure:
+```bash
+cd /home/your_login/
+sudo mkdir ftp
+cd ftp
+sudo mkdir files
+cd ..
+```
+Change the ownership and permissions of the ftp directory for security purposes:
+
+bash
+sudo chown nobody:nogroup ftp
+sudo chmod a-w ftp
+nobody:nogroup: Assigns ownership of the FTP directory to the "nobody" user and "nogroup" group.
+chmod a-w: Removes write permissions for all users to prevent them from altering the FTP directory.
+Then, set up environment variables to ensure the FTP server uses the correct directory for the logged-in user:
+
+bash
+user_sub_token=$USER
+local_root=/home/$USER/ftp
+These commands configure the root directory for FTP access, ensuring users can only interact with files within their own FTP directory.
+
+Update vsftpd.conf Again
+Open vsftpd.conf again to make another change:
+
+bash
+sudo nano /etc/vsftpd.conf
+Uncomment the following line to prevent users from accessing files outside their FTP directory:
+
+bash
+#chroot_local_user=YES
+After uncommenting, it should look like this:
+
+bash
+chroot_local_user=YES
+This ensures users are "chrooted," or locked into their FTP directory, enhancing security by limiting their access to files outside the specified folder.
+
+3. Create a User List for FTP Access
+You need to create a user list file that specifies which users can log in via FTP.
+
+Create an empty file using this command:
+
+bash
+sudo nano /etc/vsftpd.userlist
+Save the empty file and then reopen it to add configuration lines:
+
+bash
+sudo nano /etc/vsftpd.userlist
+Add the following lines to the file:
+
+bash
+userlist_enable=YES
+userlist_file=/etc/vsftpd.userlist
+userlist_deny=NO
+This enables the user list, specifies the file path, and allows the listed users to log in via FTP.
+
+4. Add Port 21 in VirtualBox
+If you are running your server in a VirtualBox virtual machine, ensure that port 21 is forwarded to allow external connections. Go to the VirtualBox Machine Settings → Network → Port Forwarding, and add a rule for port 21.
+
+5. Check FTP Status
+To verify that the FTP server is running, check the status of the vsftpd service:
+
+bash
+sudo systemctl status vsftpd
+You should see output indicating the service is active and running.
+
+Check if FTP is Listening on Port 21
+Finally, check if the FTP service is listening on port 21:
+
+bash
+sudo ss -tuln | grep :21
+You should see output indicating that FTP is listening on port 21. Here's what each part of the output means:
+
+tcp: Indicates the protocol used (TCP).
+LISTEN: The service is waiting for incoming connections.
+*:21: Indicates that FTP is listening on all available network interfaces on port 21.
+This confirms that the FTP service is enabled, running, and ready to accept connections.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.21.27%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.22.58%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.23.52%20AM.png)
@@ -1087,4 +1263,3 @@ This will close the MariaDB session and return you to the regular command-line p
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.51.19%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.54.17%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.54.37%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%209.57.49%20AM.png)
