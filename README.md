@@ -831,9 +831,37 @@ In essence, this part of the script ensures that the system monitoring task is e
 In short, every time your system reboots, this script runs in the background and continuously monitors your system's status, updating every 10 minutes.
 
 ## Step 14: Wordpress & services configuration
+---
 
+### What is WordPress?
+WordPress is an open-source content management system (CMS) used to create and manage websites. It’s one of the most popular platforms on the internet, powering millions of websites globally.
 
+### What is LightPad?
+LightPad is not as widely recognized as WordPress, and it could refer to different things depending on context. However, based on available information, there are a couple of general interpretations for "LightPad" that are commonly referenced:
+
+- LightPad (Productivity/Note-Taking App):
+
+	- LightPad could be a reference to a type of note-taking or productivity tool.
+	- These apps focus on providing a simple and streamlined interface for users to take notes, jot down ideas, or create to-do lists.
+	- Example Use Case: Professionals, students, or creatives may use it for quick note-taking or brainstorming sessions.
+
+- LightPad (Web Development):
+
+	- In some contexts, LightPad refers to a lightweight web development tool or editor.
+	- It could be designed to help developers write and test code quickly with a minimal interface, suitable for small or experimental projects.
+
+- LightPad (Art or Design):
+
+	- In other scenarios, LightPad may refer to a physical product, like a lightbox or light pad used in the art and design industry.
+	- Artists use these products to trace images or work with translucent materials.
+	- It’s a flat, illuminated surface that helps artists see their designs clearly when working with layers.
+
+1. Begin by installing the necessary tools, wget and zip, which are required for downloading files and compressing them. Use the following command to install both packages:
+```bash
+apt install wget zip
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.01.58%20PM.png)
+This command will fetch the latest versions of wget and zip from the package repository and install them on your system.
 
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.03.54%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.05.10%20PM.png)
