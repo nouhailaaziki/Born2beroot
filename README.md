@@ -856,30 +856,210 @@ LightPad is not as widely recognized as WordPress, and it could refer to differe
 	- Artists use these products to trace images or work with translucent materials.
 	- It’s a flat, illuminated surface that helps artists see their designs clearly when working with layers.
 
+1. Installation
+
+Begin by installing lighttpd, a lightweight web server, which is suitable for hosting small to medium-sized sites. Use the following command to install it:
+```bash
+apt install lighttpd
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.01.58%20PM.png)
+This command will download and install lighttpd on your system. Make sure to use sudo for the necessary administrative privileges.
+
+2. Allow Connections Through Port 80
+
+Port 80 is the default port for HTTP traffic, which is used by web servers like lighttpd. To ensure your server is accessible, you need to allow traffic through this port using the Uncomplicated Firewall (UFW):
+```bash
+sudo ufw allow 80
+```
+This rule opens port 80 to allow incoming HTTP traffic, which is essential for users to access your website.
+
+3. Verify the Firewall Rule
+
+After allowing traffic on port 80, it’s important to verify that the rule has been successfully added. You can check the status of the firewall and see if port 80 is allowed:
+```bash
+sudo ufw status
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.05.10%20PM.png)
+Look for a line indicating that connections through port 80 are allowed. Additionally, ensure that lighttpd has the necessary permissions and is properly configured.
+
+4. Configure Port Forwarding
+
+If you're working within a virtualized environment, such as VirtualBox or any other network-configured machine, you'll need to set up port forwarding for external traffic to reach your server. To add a port forwarding rule for port 80:
+
+Go to Machine configuration → Network → Port forwarding.
+Add a new rule that forwards traffic from the host to the guest machine on port 80.
+If you're unsure how to do this, refer to your virtualization software’s documentation or follow a screenshot guide that shows how to replicate this configuration. This ensures that external users can access your site hosted on the virtual machine.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.06.37%20PM.png)
+
+
+## Step 15: Wordpress(wp)
+---
+
 1. Begin by installing the necessary tools, wget and zip, which are required for downloading files and compressing them. Use the following command to install both packages:
 ```bash
 apt install wget zip
 ```
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.01.58%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.31.40%20PM.png)
+
 This command will fetch the latest versions of wget and zip from the package repository and install them on your system.
 
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.03.54%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.05.10%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.06.37%20PM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.31.40%20PM.png)
+### What is wget?
+`wget` is a command-line utility used for downloading files from the internet using various protocols like HTTP, HTTPS, and FTP. It's a non-interactive tool, meaning it can work in the background and handle slow or unstable network connections, automatically retrying the download if there are interruptions.
+
+### What is zip?
+`zip` is a compression tool used to package and compress files into a `.zip` archive. It reduces the size of files, making them easier to store or transmit. The `.zip` format is widely used and supported across many platforms.
+
+2. Next, navigate to the www directory, which is located inside the /var directory. This is where your website files are typically stored. You can do this using the following command:
+```bash
+cd /var/www/
+```
+Once you're inside the www directory, download the latest English version of WordPress using wget:
+```bash
+sudo wget https://wordpress.org/latest.zip
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.35.23%20PM.png)
+This command will download the latest WordPress package in ZIP format directly from the official WordPress website. Be sure to use sudo for administrative privileges, as writing to the /var/www/ directory requires elevated permissions.
+
+3. After downloading the WordPress package, unzip the file to extract its contents. The extracted files will include the WordPress core files:
+```bash
+sudo unzip latest.zip
+```
+This command will create a folder called wordpress containing all the necessary WordPress files inside the /var/www/ directory.
+
+4. Next, rename the existing html folder (where your current website files may be stored) to html_old, creating a backup. Then, rename the newly extracted wordpress folder to html so that the WordPress files are used as the new website root:
+```bash
+sudo mv html/ html_old/
+sudo mv wordpress/ html
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.40.03%20PM.png)
+By doing this, you ensure that WordPress will be the active site, and you’ll still have the previous site backed up in the html_old folder.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.41.52%20PM.png)
+
+5. Set the Permissions on the html Folder
+
+To ensure that the web server can access and serve the files in the html folder, you need to set the correct permissions. By doing this, you'll control who can read, write, and execute files within that folder.
+
+Use the following command to set the necessary permissions:
+```bash
+sudo chmod -R 755 html
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.44.40%20PM.png)
+Explanation of the command:
+
+- `chmod`: This command is used to change file permissions.
+- `-R`: This flag ensures that the command is applied recursively, affecting all files and directories inside the html folder.
+- `755`: This permission setting means:
+	- The owner of the folder (typically the www-data user) can read, write, and execute the files.
+	- Group members and others (e.g., visitors to your website) can read and execute the files, but cannot modify them.
+By applying these permissions, you are ensuring that:
+- The web server has full access to the files in the html folder.
+- Visitors can view and execute the necessary files (like HTML, CSS, and JavaScript) but cannot make any changes.
+This setup is crucial for serving your website content securely and efficiently.
+
+## Step 16: MariaDB
+---
+
+### What is MariaDB?
+MariaDB is a powerful, open-source relational database management system (RDBMS) that originated as a fork of MySQL. It provides high performance, scalability, and reliability, making it an ideal choice for various applications, such as data warehousing, e-commerce platforms, enterprise-level functions, and logging systems. MariaDB is designed to handle complex queries while ensuring data integrity and security.
+
+1. Installation
+
+To install MariaDB on your system, use the following command:
+```bash
+sudo apt install mariadb-server
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.46.13%20PM.png)
+This command will install the MariaDB server and related dependencies. Make sure to use sudo to grant administrative privileges required for the installation process.
+
+After installation, MariaDB will be ready to accept and manage databases, but it's also important to configure it and ensure the server is secured and optimized for your specific needs.
+
+2. Securing MariaDB
+
+By default, a fresh MariaDB installation may be left insecure, allowing for potential unauthorized access. To address this, the mariadb-server package includes a security script designed to improve the server's security by removing unused accounts, restricting access, and setting up best practices. Running this script will help you secure your MariaDB installation.
+
+To initiate the security process, execute the following command:
+
+```bash
+sudo mysql_secure_installation
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-38%20at%208.48.11%20PM.png)
+
+Once executed, the script will guide you through a series of steps:
+
+- Set a root password (if you haven't done so already).
+- Remove insecure default settings, like anonymous users.
+- Disable remote root login, ensuring that root access is only allowed from localhost.
+- Remove the test database, which could otherwise be a potential target for attackers.
+- Reload privilege tables, which updates the server with the latest security settings.
+During the process, you may be prompted to switch to Unix socket authentication. Since you already have a protected root account, simply select 'N' (No) to decline the switch.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.49.47%20PM.png)
+
+3. Access MariaDB
+
+To start interacting with your MariaDB server, you need to access the MariaDB command-line interface. Once MariaDB is installed and secured, you can enter the MySQL/MariaDB shell by running the following command:
+```bash
+mariadb
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.51.41%20PM.png)
+
+4. Create a Database for WordPress
+
+WordPress requires a dedicated database to store its content, settings, and other information. To create a new database for WordPress in MariaDB, you need to run the following SQL command:
+```sql
+CREATE DATABASE wp_database;
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.56.34%20PM.png)
+Explanation:
+
+- `CREATE DATABASE`: This command is used to create a new database in MariaDB.
+- `wp_database`: This is the name of the database you're creating for WordPress. You can choose any name you like, but it’s common to use a name related to WordPress, such as wp_database.
+Once you execute this command, the new database will be created and ready for use by WordPress.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.57.05%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.58.26%20PM.png)
+
+5. Create a User Inside the Database and Grant Privileges
+
+To enhance security and manage access, it’s important to create a dedicated user for WordPress within the database. You can then assign this user the necessary privileges to interact with the WordPress database.
+
+### Create a User:
+
+Run the following command to create a new user and assign a password. Replace 'your_login' with the username you prefer, and '12345' with a strong password:
+```sql
+CREATE USER 'your_login'@'localhost' IDENTIFIED BY '12345';
+```
+- `your_login`: The username you wish to create (your intra login).
+- `localhost`: Restricts access to the database to only the local machine (for security purposes).
+- `12345`: The password for the new user.
+
+### Grant Privileges:
+
+After creating the user, you need to grant them all the necessary privileges on the wp_database database. Use the following command:
+```sql
+GRANT ALL PRIVILEGES ON wp_database.* TO 'your_login'@'localhost';
+```
+- `GRANT ALL PRIVILEGES`: This grants the user full permissions, including the ability to read, write, update, and delete data in the database.
+- `wp_database.*`: Specifies that the privileges apply to all tables in the wp_database database.
+- `your_login'@'localhost`: Specifies that the privileges apply to the user 'your_login' only when connecting from the local machine.
+
+### Update the Privileges:
+
+After granting the privileges, execute the following command to reload the privilege table and apply the changes:
+```sql
+FLUSH PRIVILEGES;
+```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%209.04.32%20PM.png)
+
+6. Exit MariaDB
+
+Once you've completed the necessary tasks in MariaDB, such as creating the database and user, you can exit the MariaDB shell. To do this, simply run the following command:
+```sql
+exit
+```
+This will close the MariaDB session and return you to the regular command-line prompt.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%209.05.23%20PM.png)
+
+## Step 17: PHP
+---
 
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2011.12.43%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2010.23.05%20AM.png)
