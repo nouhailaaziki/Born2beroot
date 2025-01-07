@@ -1263,3 +1263,9 @@ This confirms that the FTP service is enabled, running, and ready to accept conn
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.51.19%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.54.17%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.54.37%20AM.png)
+
+![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.39.40%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.43.56%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.48.35%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.53.13%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.55.28%20PM.png)
