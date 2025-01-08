@@ -1146,30 +1146,34 @@ Run the following commands:
 ```bash
 sudo apt install vsftpd
 ```
-Verify if vsftpd is installed:
+and if you want to verify if vsftpd is installed, Run the following command:
 ```bash
 dpkg -l | grep vsftpd
 ```
-Allow traffic through port 21 using the firewall (UFW):
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.21.27%20AM.png)
+!!Don't forget to allow traffic through port 21 using the firewall (UFW):
 ```bash
 sudo ufw allow 21
 ```
 2. Configure FTP by Editing vsftpd.conf
 To configure vsftpd, you need to edit its configuration file. Open the file using a text editor:
 ```bash
-sudo nano /etc/vsftpd.conf
+vim /etc/vsftpd.conf
 ```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.22.58%20AM.png)
 Look for the following line and uncomment it (remove the #):
 ```bash
 #write_enable=YES
 ```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.23.52%20AM.png)
 After editing, it should look like this:
 ```bash
 write_enable=YES
 ```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.24.45%20AM.png)
 This allows users to upload files to the FTP server.
 
-Set Up FTP Directory Structure and Permissions
+3. Set Up FTP Directory Structure and Permissions
 Navigate to the user’s home directory and set up the FTP folder structure:
 ```bash
 cd /home/your_login/
@@ -1179,57 +1183,57 @@ sudo mkdir files
 cd ..
 ```
 Change the ownership and permissions of the ftp directory for security purposes:
-
-bash
+```bash
 sudo chown nobody:nogroup ftp
 sudo chmod a-w ftp
-nobody:nogroup: Assigns ownership of the FTP directory to the "nobody" user and "nogroup" group.
-chmod a-w: Removes write permissions for all users to prevent them from altering the FTP directory.
+```
+- nobody:nogroup: Assigns ownership of the FTP directory to the "nobody" user and "nogroup" group.
+- chmod a-w: Removes write permissions for all users to prevent them from altering the FTP directory.
 Then, set up environment variables to ensure the FTP server uses the correct directory for the logged-in user:
-
-bash
+```bash
 user_sub_token=$USER
 local_root=/home/$USER/ftp
+```
 These commands configure the root directory for FTP access, ensuring users can only interact with files within their own FTP directory.
-
-Update vsftpd.conf Again
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.29.02%20AM.png)
+4. Update vsftpd.conf Again
 Open vsftpd.conf again to make another change:
-
-bash
-sudo nano /etc/vsftpd.conf
+```bash
+vim /etc/vsftpd.conf
+```
 Uncomment the following line to prevent users from accessing files outside their FTP directory:
-
-bash
+```bash
 #chroot_local_user=YES
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.33.06%20AM.png)
 After uncommenting, it should look like this:
-
-bash
+```bash
 chroot_local_user=YES
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.34.07%20AM.png)
 This ensures users are "chrooted," or locked into their FTP directory, enhancing security by limiting their access to files outside the specified folder.
 
-3. Create a User List for FTP Access
+5. Create a User List for FTP Access
 You need to create a user list file that specifies which users can log in via FTP.
 
 Create an empty file using this command:
 
-bash
-sudo nano /etc/vsftpd.userlist
-Save the empty file and then reopen it to add configuration lines:
-
-bash
-sudo nano /etc/vsftpd.userlist
+```bash
+vim /etc/vsftpd.userlist
+```
+![continue](screen_shots_guide//screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.22.58%20AM.png)
 Add the following lines to the file:
-
-bash
+```bash
 userlist_enable=YES
 userlist_file=/etc/vsftpd.userlist
 userlist_deny=NO
+```
 This enables the user list, specifies the file path, and allows the listed users to log in via FTP.
 
-4. Add Port 21 in VirtualBox
+6. Add Port 21 in VirtualBox
 If you are running your server in a VirtualBox virtual machine, ensure that port 21 is forwarded to allow external connections. Go to the VirtualBox Machine Settings → Network → Port Forwarding, and add a rule for port 21.
 
-5. Check FTP Status
+7. Check FTP Status
 To verify that the FTP server is running, check the status of the vsftpd service:
 
 bash
@@ -1247,13 +1251,6 @@ tcp: Indicates the protocol used (TCP).
 LISTEN: The service is waiting for incoming connections.
 *:21: Indicates that FTP is listening on all available network interfaces on port 21.
 This confirms that the FTP service is enabled, running, and ready to accept connections.
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.21.27%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.22.58%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.23.52%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.24.45%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.29.02%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.33.06%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.34.07%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.35.14%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.36.07%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.38.17%20AM.png)
