@@ -1199,7 +1199,7 @@ These commands configure the root directory for FTP access, ensuring users can o
 4. Update vsftpd.conf Again
 Open vsftpd.conf again to make another change:
 ```bash
-vim /etc/vsftpd.conf
+sudo vim /etc/vsftpd.conf
 ```
 Uncomment the following line to prevent users from accessing files outside their FTP directory:
 ```bash
@@ -1219,47 +1219,42 @@ You need to create a user list file that specifies which users can log in via FT
 Create an empty file using this command:
 
 ```bash
-vim /etc/vsftpd.userlist
+sudo vim /etc/vsftpd.userlist
 ```
-![continue](screen_shots_guide//screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.22.58%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.36.07%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.35.14%20AM.png)
 Add the following lines to the file:
 ```bash
 userlist_enable=YES
 userlist_file=/etc/vsftpd.userlist
 userlist_deny=NO
 ```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.38.17%20AM.png)
 This enables the user list, specifies the file path, and allows the listed users to log in via FTP.
 
 6. Add Port 21 in VirtualBox
 If you are running your server in a VirtualBox virtual machine, ensure that port 21 is forwarded to allow external connections. Go to the VirtualBox Machine Settings → Network → Port Forwarding, and add a rule for port 21.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.39.22%20AM.png)
 
 7. Check FTP Status
 To verify that the FTP server is running, check the status of the vsftpd service:
-
-bash
+```bash
 sudo systemctl status vsftpd
+```
 You should see output indicating the service is active and running.
-
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.40.35%20AM.png)
 Check if FTP is Listening on Port 21
 Finally, check if the FTP service is listening on port 21:
-
-bash
+```bash
 sudo ss -tuln | grep :21
-You should see output indicating that FTP is listening on port 21. Here's what each part of the output means:
-
+```
+You should see output indicating that FTP is listening on port 21. 
+![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.43.30%20AM.png)
+Here's what each part of the output means:
 tcp: Indicates the protocol used (TCP).
 LISTEN: The service is waiting for incoming connections.
 *:21: Indicates that FTP is listening on all available network interfaces on port 21.
 This confirms that the FTP service is enabled, running, and ready to accept connections.
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.35.14%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.36.07%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.38.17%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.39.22%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.40.35%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.43.30%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.51.19%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.54.17%20AM.png)
-![continue](screen_shots_guide/Screen%20Shot%202025-01-05%20at%2011.54.37%20AM.png)
 
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.39.40%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.43.56%20PM.png)
