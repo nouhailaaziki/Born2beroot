@@ -1300,19 +1300,23 @@ This confirms that the FTP service is enabled, running, and ready to accept conn
 ## Step 19: customize your Site
 ---
 
-If you want to have a unique look for your site, go to this site via ![this linke](https://wordpress.org/themes/)
+If you want to have a unique look for your site, go to this site via [this linke](https://wordpress.org/themes/)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.39.40%20PM.png)
+
 Choose the theme you like and then right click on "Download", a menu will appear, choose "Copy Link Address"
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.43.56%20PM.png)
+
 Then go back to your virtual machine and do the following:
 - `cd /var/www/html`
 - `cd wp-content/themes`
 - `wget The_link_you_copied`
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.48.35%20PM.png)
+
 After that you will find that you have a new .zip file, unzip it using:
 - `unzip His_name`
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.53.13%20PM.png)
-Now go to ![this link](http://localhost/wp-admin/themes.php), you will find that the theme you chose has been downloaded, activate it by clicking on "Activate"
+
+Now go to [this link](http://localhost/wp-admin/themes.php), you will find that the theme you chose has been downloaded, activate it by clicking on "Activate"
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-06%20at%202.55.28%20PM.png)
 
 ### Congratulations on successfully completing your Born2BeRoot project! 🎉 Thank you for using my guide to get you to this amazing milestone.
