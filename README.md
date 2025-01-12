@@ -267,7 +267,7 @@ For this step, we will choose Primary because it will be the partition where the
 
 32. Now we'll configure the Logical Volume Manager.
 ![Logical Volume Manager](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.24.02%20AM.png)
-
+![Logical Volume Manager](screen_shots_guide/Screen%20Shot%202025-01-12%20at%203.05.01%20AM.png)
 33. We will accept the confirmation message, as we agree that the changes will be saved to the disk.
 ![Accept](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.24.40%20AM.png)
 
