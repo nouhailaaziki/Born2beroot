@@ -233,7 +233,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![Following screenshot](screen_shots_guide/second_partition_setting_done.png)
 
 21. Let's configure the encrypted volumes now
-![configure](screen_shots_guide/configure_encrypted_volumes.png)
+![configure](screen_shots_guide/Screen%20Shot%202025-01-13%20at%2011.05.43%20AM.png)
 
 22. Accept the confirmation message to proceed with configuring the encrypted volume. This step finalizes the encryption setup and applies the necessary changes to the partition.
 ![Accept](screen_shots_guide/write_the_changes.png)
