@@ -15,6 +15,32 @@ Whether setting up servers, troubleshooting, or optimizing performance, **Born2b
 
 `Before starting, it's important to understand that each action in every step serves a specific purpose. You should know why it's being done and how it contributes to the overall process. A solid grasp of the technical context is crucial to fully comprehend the procedure.`
 
+## Table of Contents
+---
+
+# Table of Contents
+
+- [Check for VirtualBox](#step-1-check-for-virtualbox)
+- [Selecting the Operating System](#step-2-selecting-the-operating-system)
+- [Creating a New Virtual Machine in Oracle VirtualBox](#step-3-creating-a-new-virtual-machine-in-oracle-virtualbox)
+- [Mount the ISO File and Start the Virtual Machine](#step-4-mount-the-iso-file-and-start-the-virtual-machine)
+- [Installing Debian Operating System](#step-5-installing-debian-operating-system)
+- [Virtual Machine Configuration](#step-6-virtual-machine-configuration)
+- [Install sudo and Configure Users and Groups](#step-7-install-sudo-and-configure-users-and-groups)
+- [Install and Configure the SSH](#step-8-install-and-configure-the-ssh)
+- [Install and Configure the UFW](#step-9-install-and-configure-the-ufw)
+- [Set a Strong Password for Your Sudo Privileges](#step-10-set-a-strong-password-for-your-sudo-privileges)
+- [Strong Password Policy Settings](#step-11-strong-password-policy-settings)
+- [Connect from SSH](#step-12-connect-from-ssh)
+- [Writing the Bash Monitoring Script](#step-13-writing-the-bash-monitoring-script)
+- [📅 Crontab Setup for Monitoring Script](#step-14-crontab-setup-for-monitoring-script)
+- [WordPress (wp)](#step-15-wordpress-wp)
+- [MariaDB](#step-16-mariadb)
+- [PHP](#step-17-php)
+- [Installing Netdata as an Extra Service](#step-18-installing-netdata-as-an-extra-service)
+- [Customize Your Site](#step-19-customize-your-site)
+
+
 ## Step 1: Check for VirtualBox
 ---
 
