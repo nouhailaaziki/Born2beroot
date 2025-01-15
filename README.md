@@ -235,7 +235,7 @@ For this step, we will choose Primary because it will be the partition where the
 12. We have finished configuring the current partition.
 ![Following screenshot](screen_shots_guide/first_partition_setting_done.png)
 
-13. Once we have completed the previous step, the partition should appear. Next, we need to create a logical partition using all the remaining available disk space. This partition will have no mount point and will be encrypted. To do this, we select the free space where we want to create the logical partition.![Following screenshot](screen_shots_guide/second_free_space.png)
+13. Once we have completed the previous step, the partition should appear. Next, we need to create a logical partition using all the remaining available disk space. This partition will have no mount point and will be encrypted. To do this, we select the free space where we want to create the logical partition.![Following screenshot](screen_shots_guide/Screen%20Shot%202025-01-13%20at%202.12.50%20PM.png)
 
 14. Create a new partition
 ![Following screenshot](screen_shots_guide/creat_second_partition.png)
@@ -293,7 +293,7 @@ For this step, we will choose Primary because it will be the partition where the
 
 32. Now we'll configure the Logical Volume Manager.
 ![Logical Volume Manager](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.24.02%20AM.png)
-![Logical Volume Manager](screen_shots_guide/Screen%20Shot%202025-01-12%20at%203.05.01%20AM.png)
+![Logical Volume Manager](screen_shots_guide/Screen%20Shot%202025-01-15%20at%201.47.05%20PM.png)
 33. We will accept the confirmation message, as we agree that the changes will be saved to the disk.
 ![Accept](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.24.40%20AM.png)
 
