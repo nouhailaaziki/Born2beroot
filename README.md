@@ -207,7 +207,7 @@ Don’t be confused if you see SCSI3 instead, as the SCSI controller number is a
 ![Create a partition](screen_shots_guide/create_a_partition.png)
 
 6. Following the image provided in the subject, we will create the partitions one by one (this image from the bonus part).
-![Partition size](screen_shots_guide/partition_size.png)
+![Partition size](screen_shots_guide/Screen%20Shot%202025-01-15%20at%202.39.57%20PM%202.png)
 
 7. As indicated in the subject, the size of the first partition should be **500.99 megabytes**.
 ![First partition size](screen_shots_guide/the_max_size_for_it.png)
@@ -241,7 +241,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![Following screenshot](screen_shots_guide/creat_second_partition.png)
 
 15. We will follow the example provided in the subject for creating the logical partition.
-![Following screenshot](screen_shots_guide/partition_size.png)
+![Following screenshot](screen_shots_guide/Screen%20Shot%202025-01-15%20at%202.39.57%20PM.png)
 
 16. We will select max for this partition to utilize all the remaining available disk space.
 ![Following screenshot](screen_shots_guide/second_partition_size.png)
@@ -307,7 +307,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![group's partition](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.38.37%20AM.png)
 
 37. We need to create them according to the example provided in the instructions.
-![subject's instructions](screen_shots_guide/partition_size.png)
+![subject's instructions](screen_shots_guide/Screen%20Shot%202025-01-15%20at%202.39.57%20PM%203.png)
 
 38. We'll begin by selecting the group where we want them to be created. Choose the only available group (the one we just created).
 ![Create logical volume](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.39.30%20AM.png)
