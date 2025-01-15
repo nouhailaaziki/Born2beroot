@@ -207,7 +207,7 @@ Don’t be confused if you see SCSI3 instead, as the SCSI controller number is a
 ![Create a partition](screen_shots_guide/create_a_partition.png)
 
 6. Following the image provided in the subject, we will create the partitions one by one (this image from the bonus part).
-![Partition size](screen_shots_guide/Screen%20Shot%202025-01-15%20at%204.07.36%20PM%202.png)
+![Partition size](screen_shots_guide/Screen%20Shot%202025-01-15%20at%204.07.36%20PM%20.png)
 
 7. As indicated in the subject, the size of the first partition should be **500.99 megabytes**.
 ![First partition size](screen_shots_guide/the_max_size_for_it.png)
