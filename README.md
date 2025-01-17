@@ -33,7 +33,7 @@ Whether setting up servers, troubleshooting, or optimizing performance, **Born2b
 - [Strong Password Policy Settings](#step-11-strong-password-policy-settings)
 - [Connect from SSH](#step-12-connect-from-ssh)
 - [Writing the Bash Monitoring Script](#step-13-writing-the-bash-monitoring-script)
-- [📅 Crontab Setup for Monitoring Script](#step-14-crontab-setup-for-monitoring-script)
+- [📅 Crontab Setup for Monitoring Script](#step-14-📅-crontab-setup-for-monitoring-script)
 - [WordPress (wp)](#step-15-wordpress-wp)
 - [MariaDB](#step-16-mariadb)
 - [PHP](#step-17-php)
