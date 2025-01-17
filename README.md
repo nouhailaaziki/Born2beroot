@@ -720,6 +720,9 @@ And write the script inside like below
 ```bash
 #!/bin/bash
 
+while true; do
+	sleep 599
+
 architecture=$(uname -a)
 
 cpu_physical=$(lscpu | grep "Socket(s)" | awk '{print $2}')
@@ -730,7 +733,7 @@ memory_usage=$(free --mega | grep Mem | awk '{printf("%d/%dMB (%.2f%%)\n", $3, $
 
 disk_usage=$(df -Bm --total | grep total | awk '{printf("%d/%dGb (%d%%)\n", $3, $2/1000, $3/$2*100)}')
 
-cpu_load=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%"), $1 + $3}')
+cpu_load=$(top -bn1 | grep '^%Cpu' | awk '{printf("%.1f", $2 + $4)}')
 
 last_boot=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 
@@ -758,6 +761,7 @@ wall "
 	#Network: IP $network
 	#Sudo: $sudo cmd
 "
+done
 ```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.39.29%20AM.png)
 
