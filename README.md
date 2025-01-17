@@ -33,8 +33,8 @@ Whether setting up servers, troubleshooting, or optimizing performance, **Born2b
 - [Strong Password Policy Settings](#step-11-strong-password-policy-settings)
 - [Connect from SSH](#step-12-connect-from-ssh)
 - [Writing the Bash Monitoring Script](#step-13-writing-the-bash-monitoring-script)
-- [📅 Crontab Setup for Monitoring Script](#step-14-📅-crontab-setup-for-monitoring-script)
-- [WordPress (wp)](#step-15-wordpress-wp)
+- [Crontab Setup for Monitoring Script](#step-14-crontab-setup-for-monitoring-script)
+- [Wordpress & services configuration](step-15-#Wordpress-&-services-configuration)
 - [MariaDB](#step-16-mariadb)
 - [PHP](#step-17-php)
 - [Installing Netdata as an Extra Service](#step-18-installing-netdata-as-an-extra-service)
@@ -768,7 +768,7 @@ done
 After successfully running the script, you should see output that gives you a detailed summary of your system's performance and configuration. The following is an example of what you might see after executing the monitoring script:
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.55.32%20AM.png)
 
-## Step 14: 📅 Crontab Setup for Monitoring Script
+## Step 14: Crontab Setup for Monitoring Script
 ---
 
 1. What is Crontab?
@@ -877,7 +877,7 @@ In essence, this part of the script ensures that the system monitoring task is e
 
 In short, every time your system reboots, this script runs in the background and continuously monitors your system's status, updating every 10 minutes.
 
-## Step 14: Wordpress & services configuration
+## Step 15: Wordpress & services configuration
 ---
 
 ### What is WordPress?
@@ -938,11 +938,7 @@ Add a new rule that forwards traffic from the host to the guest machine on port 
 If you're unsure how to do this, refer to your virtualization software’s documentation or follow a screenshot guide that shows how to replicate this configuration. This ensures that external users can access your site hosted on the virtual machine.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.06.37%20PM.png)
 
-
-## Step 15: Wordpress(wp)
----
-
-1. Begin by installing the necessary tools, wget and zip, which are required for downloading files and compressing them. Use the following command to install both packages:
+5. Begin by installing the necessary tools, wget and zip, which are required for downloading files and compressing them. Use the following command to install both packages:
 ```bash
 apt install wget zip
 ```
@@ -956,7 +952,7 @@ This command will fetch the latest versions of wget and zip from the package rep
 ### What is zip?
 `zip` is a compression tool used to package and compress files into a `.zip` archive. It reduces the size of files, making them easier to store or transmit. The `.zip` format is widely used and supported across many platforms.
 
-2. Next, navigate to the www directory, which is located inside the /var directory. This is where your website files are typically stored. You can do this using the following command:
+6. Next, navigate to the www directory, which is located inside the /var directory. This is where your website files are typically stored. You can do this using the following command:
 ```bash
 cd /var/www/
 ```
@@ -967,13 +963,13 @@ sudo wget https://wordpress.org/latest.zip
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.35.23%20PM.png)
 This command will download the latest WordPress package in ZIP format directly from the official WordPress website. Be sure to use sudo for administrative privileges, as writing to the /var/www/ directory requires elevated permissions.
 
-3. After downloading the WordPress package, unzip the file to extract its contents. The extracted files will include the WordPress core files:
+7. After downloading the WordPress package, unzip the file to extract its contents. The extracted files will include the WordPress core files:
 ```bash
 sudo unzip latest.zip
 ```
 This command will create a folder called wordpress containing all the necessary WordPress files inside the /var/www/ directory.
 
-4. Next, rename the existing html folder (where your current website files may be stored) to html_old, creating a backup. Then, rename the newly extracted wordpress folder to html so that the WordPress files are used as the new website root:
+8. Next, rename the existing html folder (where your current website files may be stored) to html_old, creating a backup. Then, rename the newly extracted wordpress folder to html so that the WordPress files are used as the new website root:
 ```bash
 sudo mv html/ html_old/
 sudo mv wordpress/ html
@@ -982,7 +978,7 @@ sudo mv wordpress/ html
 By doing this, you ensure that WordPress will be the active site, and you’ll still have the previous site backed up in the html_old folder.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%208.41.52%20PM.png)
 
-5. Set the Permissions on the html Folder
+9. Set the Permissions on the html Folder
 
 To ensure that the web server can access and serve the files in the html folder, you need to set the correct permissions. By doing this, you'll control who can read, write, and execute files within that folder.
 
