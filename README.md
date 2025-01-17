@@ -1066,7 +1066,7 @@ To enhance security and manage access, it’s important to create a dedicated us
 
 ### Create a User:
 
-Run the following command to create a new user and assign a password. Replace 'your_login' with the username you prefer, and '12345' with a strong password:
+Run the following command to create a new user and assign a password. Replace 'your_login' with your intra login, and '12345' with a strong password:
 ```sql
 CREATE USER 'your_login'@'localhost' IDENTIFIED BY '12345';
 ```
