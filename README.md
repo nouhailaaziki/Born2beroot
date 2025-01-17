@@ -720,68 +720,44 @@ And write the script inside like below
 ```bash
 #!/bin/bash
 
-while true;
-do
-	sleep 599
-
-# ARCHITECTURE
 architecture=$(uname -a)
 
-# CPU PHYSICAL
-cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
+cpu_physical=$(lscpu | grep "Socket(s)" | awk '{print $2}')
 
-# CPU VIRTUAL
-cpu_virtual=$(grep "processor" /proc/cpuinfo | wc -l)
+cpu_virtual=$(lscpu | grep "^CPU(s)" | awk '{print $2}')
 
-# MEMORY USAGE
-ram_total=$(free --mega | awk '$1 == "Mem:" {print $2}')
-ram_use=$(free --mega | awk '$1 == "Mem:" {print $3}')
-ram_percent=$(free --mega | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')
+memory_usage=$(free --mega | grep Mem | awk '{printf("%d/%dMB (%.2f%%)\n", $3, $2 , $3/$2*100)}')
 
-# DISK USAGE
-disk_total=$(df -h | grep /dev/ | grep -v "/boot" | awk '{disk_t += $2} END {printf ("%.1fGb\n"), disk_t/1024}')
-disk_use=$(df -h | grep /dev/ | grep -v "/boot" | awk '{disk_u += $3} END {printf "%d", disk_u}')
-disk_percent=$(df -h | grep /dev/ | grep -v "/boot" | awk '{disk_u += $3} {disk_t+=$2} END {printf("%d"), disk_u/disk_t*100}')
+disk_usage=$(df -Bm --total | grep total | awk '{printf("%d/%dGb (%d%%)\n", $3, $2/1000, $3/$2*100)}')
 
-# CPU LOAD
-cpu1=$(vmstat 1 2 | tail -1 | awk '{print $15}')
-cpu_op=$(expr 100 - $cpu1)
-cpu_fin=$(printf "%.1f" $cpu_op)
+cpu_load=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%"), $1 + $3}')
 
-# LAST BOOT
 last_boot=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 
-# LVM USE
-lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
+lvm_use=$(lsblk | awk '{print $6}' | grep -q lvm && printf "yes\n" || printf "no\n")
 
-# CONNECTIONS TCP
 connections_tcp=$(ss -ta | grep ESTAB | wc -l)
 
-# USER LOG
 user_log=$(users | wc -w)
 
-# NETWORK
-ip=$(hostname -I)
-mac=$(ip link | grep "link/ether" | awk '{print $2}')
+network=$(hostname -I | tr '\n' ' ' && ip link | grep /ether | awk '{print $2}')
 
-# SUDO
-sudo_count=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+sudo=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
 
 wall "
 	#Architecture: $architecture
 	#CPU physical: $cpu_physical
 	#vCPU: $cpu_virtual
-	#Memory Usage: $ram_use/${ram_total}MB ($ram_percent%)
-	#Disk Usage: $disk_use/$disk_total ($disk_percent%)
-	#CPU load: $cpu_fin%
+	#Memory Usage: $memory_usage
+	#Disk Usage: $disk_usage
+	#CPU load: $cpu_load%
 	#Last boot: $last_boot
 	#LVM use: $lvm_use
 	#Connections TCP: $connections_tcp ESTABLISHED
 	#User log: $user_log
-	#Network: IP $ip($mac)
-	#Sudo: $sudo_count cmd
+	#Network: IP $network
+	#Sudo: $sudo cmd
 "
-done
 ```
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.39.29%20AM.png)
 
