@@ -34,7 +34,7 @@ Whether setting up servers, troubleshooting, or optimizing performance, **Born2b
 - [Connect from SSH](#step-12-connect-from-ssh)
 - [Writing the Bash Monitoring Script](#step-13-writing-the-bash-monitoring-script)
 - [Crontab Setup for Monitoring Script](#step-14-crontab-setup-for-monitoring-script)
-- [Wordpress & services configuration](#step-15-wordpress-&-services-configuration)
+- [Wordpress and services configuration](#step-15-wordpress-and-services-configuration)
 - [MariaDB](#step-16-mariadb)
 - [PHP](#step-17-php)
 - [Installing Netdata as an Extra Service](#step-18-installing-netdata-as-an-extra-service)
@@ -877,7 +877,7 @@ In essence, this part of the script ensures that the system monitoring task is e
 
 In short, every time your system reboots, this script runs in the background and continuously monitors your system's status, updating every 10 minutes.
 
-## Step 15: Wordpress & services configuration
+## Step 15: Wordpress and services configuration
 ---
 
 ### What is WordPress?
