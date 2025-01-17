@@ -34,7 +34,7 @@ Whether setting up servers, troubleshooting, or optimizing performance, **Born2b
 - [Connect from SSH](#step-12-connect-from-ssh)
 - [Writing the Bash Monitoring Script](#step-13-writing-the-bash-monitoring-script)
 - [Crontab Setup for Monitoring Script](#step-14-crontab-setup-for-monitoring-script)
-- [Wordpress & services configuration](step-15-#Wordpress-&-services-configuration)
+- [Wordpress & services configuration](#step-15-#Wordpress-&-services-configuration)
 - [MariaDB](#step-16-mariadb)
 - [PHP](#step-17-php)
 - [Installing Netdata as an Extra Service](#step-18-installing-netdata-as-an-extra-service)
