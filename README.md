@@ -857,9 +857,16 @@ In this example:
 */10: Runs the script every 10 minutes.
 
 Inside the file, you will add the following command: 
+- If you have the monitoring.sh file in user folder:
 ```@reboot sh /home/your_login/monitoring.sh```
-This will ensure that the script runs once every 10 minutes after a reboot.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2011.12.43%20AM.png)
+This will ensure that the script runs once every 10 minutes after a reboot.
+
+- If you have the monitoring.sh file in root folder, like me:
+```@reboot sh /root/monitoring.sh```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%201.54.19%20PM.png)
+This will ensure that the script runs once every 10 minutes after a reboot.
+
 In this case, the command `@reboot sh /home/your_login/monitoring.sh` added to your crontab makes your script run automatically at system startup. Here's how crontab works in this context:
 
 - `@reboot`: This is a special time specification in crontab that schedules your script to run every time the system starts or reboots. It ensures your monitoring script starts as soon as the system is up and running.
