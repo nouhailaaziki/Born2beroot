@@ -635,6 +635,16 @@ This command initiates an SSH connection to the virtual machine, specifying the 
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.23.18%20PM.png)
 Ensure your virtual machine is running while you attempt to connect via SSH.
 
+If you encounter a problem like the one below:
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%201.14.36%20PM.png)
+This message appears because SSH's strict host key checking detected a change in the host key of the server you're trying to connect to (localhost in this case).
+You just have to do the following:
+```
+vim ~/.ssh/known_hosts
+```
+Delete the line containing [localhost]:4242..., Save the file and then try connecting again.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%201.15.02%20PM.png)
+
 ## Step 13: Writing the Bash Monitoring Script
 ---
 
