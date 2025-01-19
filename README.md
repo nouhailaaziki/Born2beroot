@@ -598,6 +598,13 @@ Here’s what each parameter does:
 - `enforce_for_root`: Enforces these password rules even for the root user.
 These settings help to enforce robust password policies that enhance the overall security of your system.
 
+6. Don't forget to set and confirm password aging policies for both user and root.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%2011.16.16%20AM.png)
+
+Sets the minimum and maximum password age for both user and root:
+`-m 2`: The user and root must wait at least 2 days between password changes.
+`-M 30`: The user and root must change their password within 30 days.
+
 ## Step 12: Connect from SSH
 ---
 
