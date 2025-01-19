@@ -1180,6 +1180,7 @@ Enter your credentials, and you’ll be redirected to the WordPress Dashboard, w
 ## Step 18: Installing Netdata as an Extra Service
 ---
 
+### What is Netdata?
 **Netdata** is an open-source, real-time performance monitoring tool designed to provide comprehensive insights into the performance of systems, applications, and networks. It helps administrators and developers monitor various system metrics, troubleshoot performance issues, and optimize resource usage.
 
 ### Why it matters?
@@ -1190,7 +1191,6 @@ Enter your credentials, and you’ll be redirected to the WordPress Dashboard, w
 	- Network spikes or outages.
 - Netdata is designed to run with minimal resource consumption. This ensures it monitors your VM without adding significant overhead.
 - By monitoring the VM in real time, Netdata indirectly improves security by providing visibility into system behavior. You can spot unauthorized activity, unusual traffic, or performance degradation caused by malicious processes.
-- If you plan to scale up your infrastructure, Netdata can monitor multiple VMs in a centralized setup. Additionally, it integrates seamlessly with tools like Prometheus, Grafana, or ElasticSearch for advanced analytics.
 - If you plan to scale up your infrastructure, Netdata can monitor multiple VMs in a centralized setup. Additionally, it integrates seamlessly with tools like Prometheus, Grafana, or ElasticSearch for advanced analytics.
   
 ### When Netdata is the Right Choice?
