@@ -325,7 +325,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![size](screen_shots_guide/Screen%20Shot%202024-12-31%20at%2010.14.28%20AM.png)
 
 43. Now, in the section displaying all the partitions and available free space, you should see all the logical partitions we just created. Our next step is to configure each one by selecting the desired file system and the corresponding mount point as specified in the subject. We’ll proceed in order, starting with the first partition that appears, which is "home," by pressing Enter.
-![cofigure](screen_shots_guide/Screen%20Shot%202025-01-17%20at%2010.18.13%20AM.png)
+![cofigure](screen_shots_guide/Screen%20Shot%202025-01-17%20at%2010.20.35%20AM.png)
    
 44. It will display the partition configuration. Since the partition currently lacks a file system, we need to assign one. To do this, press Enter on the `"Use as"` option, which is currently set to `"Do not use."`
 ![cofigure](screen_shots_guide/Screen%20Shot%202024-12-26%20at%204.39.07%20PM.png)
