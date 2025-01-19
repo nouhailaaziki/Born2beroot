@@ -741,9 +741,6 @@ And write the script inside like below
 ```bash
 #!/bin/bash
 
-while true; do
-	sleep 599
-
 architecture=$(uname -a)
 
 cpu_physical=$(lscpu | grep "Socket(s)" | awk '{print $2}')
@@ -782,9 +779,8 @@ wall "
 	#Network: IP $network
 	#Sudo: $sudo cmd
 "
-done
 ```
-![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.39.29%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%203.52.31%20PM.png)
 
 After successfully running the script, you should see output that gives you a detailed summary of your system's performance and configuration. The following is an example of what you might see after executing the monitoring script:
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.55.32%20AM.png)
@@ -807,7 +803,7 @@ crontab -u root -e
 ```
 This opens the crontab configuration file in your default text editor.
 you will be prompted to select an editor, choose the first one as it is the easiest.
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.49.07%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%203.58.17%20PM.png)
 
 3. Define the Frequency of Execution
 Crontab uses a specific format to schedule tasks. The format consists of five fields:
@@ -872,13 +868,16 @@ In this case, the command `@reboot sh /home/your_login/monitoring.sh` added to y
 
 - `Script Execution`: When your system boots, crontab triggers the script located at /home/noaziki/monitoring.sh.
 
-Do you remember this part of the script?
+Do you remember the script, we'll go back to it to add this part?
 ```bash
 while true;
 do
 	sleep 599
 done
 ```
+It will be like this:
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%203.54.07%20PM.png)
+
 Let's analyze it now.
 
 - `while true;`: This creates an infinite loop. The condition true always evaluates as "true," meaning the loop will never exit on its own. It's used when you want a section of code to run repeatedly without stopping until the program is manually terminated or the system shuts down.
