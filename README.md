@@ -316,7 +316,7 @@ For this step, we will choose Primary because it will be the partition where the
 ![root](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.40.11%20AM%20copy.png)
 
 40. As specified in the subject, the size will be set to 10GB.
-![size](screen_shots_guide/Screen%20Shot%202024-12-24%20at%2011.40.59%20AM%20copy.png)
+![size](screen_shots_guide/Screen%20Shot%202025-01-16%20at%206.27.25%20PM.png)
 
 41. To avoid repetition, proceed by applying the same process to all partitions in the volume group. Assign each one the same name and size as outlined in the example above.
 ![subject's instructions](screen_shots_guide/Screen%20Shot%202025-01-15%20at%204.21.16%20PM.png)
@@ -384,6 +384,10 @@ For this step, we will choose Primary because it will be the partition where the
 
 2. Next, enter the username and password for the non-root user that you created during the installation process. This will log you into the system with regular user privileges.
 ![continue](screen_shots_guide/Screen%20Shot%202024-12-31%20at%202.18.28%20PM.png)
+
+3. Make sure that the sections are set up correctly and that the result is similar to the structure shown in the subject.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%2010.34.17%20AM.png)
+
 Great! 🎉 Now that everything is set up, you're ready to begin configuring your Debian virtual machine. You can now proceed with installing any necessary software, setting up your development environment, or customizing the system to suit your needs. Enjoy exploring your virtual machine!
 
 ## Step 7: Install sudo and configure users and groups
