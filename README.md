@@ -1180,6 +1180,30 @@ Enter your credentials, and you’ll be redirected to the WordPress Dashboard, w
 ## Step 18: Installing Netdata as an Extra Service
 ---
 
+**Netdata** is an open-source, real-time performance monitoring tool designed to provide comprehensive insights into the performance of systems, applications, and networks. It helps administrators and developers monitor various system metrics, troubleshoot performance issues, and optimize resource usage.
+
+### Why it matters?
+- Netdata provides second-by-second insights into the performance of your VM, including CPU, memory, disk usage, network traffic, and even application-specific metrics. This helps you stay on top of any performance bottlenecks or anomalies.
+- Netdata helps you detect and address issues before they impact your VM. With custom alarms and anomaly detection, you can act on problems such as:
+	- High CPU or memory usage.
+	- Disk I/O bottlenecks.
+	- Network spikes or outages.
+- Netdata is designed to run with minimal resource consumption. This ensures it monitors your VM without adding significant overhead.
+- By monitoring the VM in real time, Netdata indirectly improves security by providing visibility into system behavior. You can spot unauthorized activity, unusual traffic, or performance degradation caused by malicious processes.
+- If you plan to scale up your infrastructure, Netdata can monitor multiple VMs in a centralized setup. Additionally, it integrates seamlessly with tools like Prometheus, Grafana, or ElasticSearch for advanced analytics.
+- If you plan to scale up your infrastructure, Netdata can monitor multiple VMs in a centralized setup. Additionally, it integrates seamlessly with tools like Prometheus, Grafana, or ElasticSearch for advanced analytics.
+  
+### When Netdata is the Right Choice?
+
+- Your choice of Netdata is the right one if:
+	- You want visibility and control over the performance of your VM.
+	- Your focus is on maintaining system health rather than transferring files.
+	- You're interested in proactive monitoring, troubleshooting, and improving system reliability.
+
+### Conclusion
+
+By choosing Netdata, you've prioritized maintaining a stable, efficient, and well-monitored VM environment. It's an essential tool for anyone managing infrastructure who values real-time insights, proactive issue detection, and seamless scalability. Your decision reflects a focus on long-term reliability and performance over the narrower utility of file transfer tools like FTP.
+
 
 
 ## Step 19: customize your Site
