@@ -1093,6 +1093,7 @@ CREATE USER 'your_login'@'localhost' IDENTIFIED BY '12345';
 - `your_login`: The username you wish to create (your intra login).
 - `localhost`: Restricts access to the database to only the local machine (for security purposes).
 - `12345`: The password for the new user.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%204.37.50%20PM.png)
 
 ### Grant Privileges:
 
@@ -1110,7 +1111,7 @@ After granting the privileges, execute the following command to reload the privi
 ```sql
 FLUSH PRIVILEGES;
 ```
-![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%209.04.32%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%204.39.04%20PM.png)
 
 6. Exit MariaDB
 
