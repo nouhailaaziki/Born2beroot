@@ -1237,7 +1237,7 @@ By choosing Netdata, you've prioritized maintaining a stable, efficient, and wel
 1. open a browser and type `netdata.cloud` in the address bar. This should direct you to the official netdata website. After that click on `Get Netdata` button.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.06.20%20PM.png)
 
-2. You will be directed to a page to register, click on continue with Google, and choose your preferred account.
+2. You will be directed to a page to sign-in, click on continue with Google, and choose your preferred account.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.19.12%20AM.png)
 
 3. Now you need to answer some questions to customize your account, if you don't know the answer follow what I did in the guide
@@ -1256,7 +1256,30 @@ By choosing Netdata, you've prioritized maintaining a stable, efficient, and wel
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.25.43%20PM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.26.10%20PM.png)
 
-7. 
+7. After the installation completes, Netdata should be running. You can check its status using:
+```bash
+systemctl status netdata
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.31.00%20PM.png)
+
+8. Allow access to port 19999 using:
+```bash
+ufw allow 19999
+```
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.38.12%20PM.png)
+
+9. Go to Machine configuration → Network → Port forwarding. Add 19999 as a new rule.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.39.16%20PM.png)
+
+10. Open your web browser and go to `localhost:19999`, and press the sign-in button.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.40.56%20PM.png)
+
+11. Press yes.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.41.21%20PM.png)
+
+12. Congratulations, you have successfully downloaded netdata service.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.41.57%20PM.png)
+
 ## Step 19: customize your Site
 ---
 
