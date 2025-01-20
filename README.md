@@ -1246,6 +1246,17 @@ By choosing Netdata, you've prioritized maintaining a stable, efficient, and wel
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.21.53%20AM.png)
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.22.05%20AM.png)
 
+4. After answering all the questions, you will be directed to a page where you will choose the operating system for your virtual machine. In our case we will choose Debian.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.22.36%20PM.png)
+
+5. We will copy the command that will appear.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.23.19%20PM.png)
+
+6. Paste the command into your terminal where you are logged into your virtual machine, and press the enter button
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.25.43%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.26.10%20PM.png)
+
+7. 
 ## Step 19: customize your Site
 ---
 
