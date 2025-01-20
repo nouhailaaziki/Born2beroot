@@ -1232,7 +1232,19 @@ Enter your credentials, and you’ll be redirected to the WordPress Dashboard, w
 
 By choosing Netdata, you've prioritized maintaining a stable, efficient, and well-monitored VM environment. It's an essential tool for anyone managing infrastructure who values real-time insights, proactive issue detection, and seamless scalability. Your decision reflects a focus on long-term reliability and performance over the narrower utility of file transfer tools like FTP.
 
+### How to install Netdata
 
+1. open a browser and type `netdata.cloud` in the address bar. This should direct you to the official netdata website. After that click on `Get Netdata` button.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.06.20%20PM.png)
+
+2. You will be directed to a page to register, click on continue with Google, and choose your preferred account.
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.19.12%20AM.png)
+
+3. Now you need to answer some questions to customize your account, if you don't know the answer follow what I did in the guide
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.21.01%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.21.23%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.21.53%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-01-19%20at%202.22.05%20AM.png)
 
 ## Step 19: customize your Site
 ---
