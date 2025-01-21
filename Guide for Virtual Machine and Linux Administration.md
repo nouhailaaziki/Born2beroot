@@ -127,7 +127,7 @@ Partitioning refers to dividing a physical hard drive into separate, independent
 
 ## 11. What is Sudo and the Role of Sudo Users?
 
-Sudo allows users to run commands with administrative (root) privileges without needing to log in as the root user.
+Sudo is a command-line allows users to run commands with administrative (root) privileges without needing to log in as the root user.
 
 - Role: It limits the number of users with full access to the system while granting temporary administrative privileges. This helps prevent accidental or malicious system changes.
 - Security: Using sudo improves security since users need to authenticate themselves to perform privileged tasks, reducing the risk of unauthorized access.
