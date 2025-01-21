@@ -98,7 +98,7 @@ A password policy enforces rules for creating and using passwords, such as lengt
 - Advantages:
   - **Security**: Strong password policies reduce the likelihood of successful attacks like brute-force attacks.
   - **Standardization**: Ensures users maintain a consistent level of security.
--Disadvantages:
+- Disadvantages:
   - **Usability**: Complex password policies might lead to users forgetting their passwords.
   - **Workarounds**: Users might store passwords insecurely (like writing them down) if policies are too strict.
 
