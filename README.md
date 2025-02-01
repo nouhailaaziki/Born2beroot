@@ -660,75 +660,137 @@ Entering this section requires close attention to detail. It's essential to full
 ### What is a script?
 A script is a file containing a sequence of commands. When executed, these commands perform specific tasks outlined in the script.
 
-### 1- System Architecture
-To display the system's architecture, use the `uname -a` command. This command provides comprehensive information about the system, except in cases where the CPU or platform is unknown.
+### 1. Shebang Line
+```bash
+#!/bin/bash
+```
+- This tells the system to execute the script using the Bash shell.
 
-### 2- Physical Cores
-To find out the number of physical cores, access the `/proc/cpuinfo` file, which contains information about the CPU, such as type, brand, model, and performance. You can count the physical cores using the command:
-```grep "physical id" /proc/cpuinfo | wc -l```
+### 2. Fetching System Architecture
+```bash
+architecture=$(uname -a)
+```
+- `uname -a`: Displays system information, including OS type, kernel version, etc.
+- `architecture=`: Stores this information in the architecture variable.
 
-### 3- Virtual Cores
-Similarly, to determine the number of virtual cores, use the `/proc/cpuinfo` file again. This time, run the command:
-```grep processor /proc/cpuinfo | wc -l```
-to count the number of virtual cores.
+### 3. Counting Physical CPUs
+```bash
+cpu_physical=$(lscpu | grep "Socket(s)" | awk '{print $2}')
+```
+- `lscpu`: Displays CPU information.
+- `grep "Socket(s)"`: Finds the line with "Socket(s)", which represents physical CPU sockets.
+- `awk '{print $2}'`: Extracts the second column (number of physical CPUs).
 
-### 4- RAM
-To view details about the RAM, use the `free` command, which provides real-time data about RAM usage, available space, and reserved resources. For more detailed information, run `free --help`. To display RAM in megabytes, use:
-`free --mega`
 
-After running the command, filter the output to show only relevant data. To get the used memory, run:
-```free --mega | awk '$1 == "Mem:" {print $3}'```
+### 4. Counting Virtual CPUs 
+```bash
+cpu_virtual=$(lscpu | grep "^CPU(s)" | awk '{print $2}')
+```
+- `lscpu`: Gets CPU info.
+- `grep "^CPU(s)"`: Finds the total number of CPU cores (physical + virtual/hyper-threading).
+- `awk '{print $2}'`: Extracts the second column (total vCPUs).
 
-To get the total memory, run a similar command but print the second word instead of the third:
-```free --mega | awk '$1 == "Mem:" {print $2}'```
+### 5. Checking Memory Usage
+```bash
+memory_usage=$(free --mega | grep Mem | awk '{printf("%d/%dMB (%.2f%%)\n", $3, $2 , $3/$2*100)}')
+```
+- `free --mega`: Shows memory usage in MB.
+- `grep Mem`: Filters the line with total and used memory.
+- `awk '{printf("%d/%dMB (%.2f%%)\n", $3, $2 , $3/$2*100)}'`:
+	- `$3`: Used memory.
+	- `$2`: Total memory.
+	- `$3/$2*100`: Calculates percentage.
 
-Finally, to calculate the percentage of used memory, run this command, which formats the output to two decimal places:
-```free --mega | awk '$1 == "Mem:" {printf("(%.2f%%)\n", $3/$2*100)}'```
+### 6. Checking Disk Usage
+```bash
+disk_usage=$(df -Bm --total | grep total | awk '{printf("%d/%dGb (%d%%)\n", $3, $2/1000, $3/$2*100)}')
+```
+- `df -Bm --total`: Shows the total of disk usage in MB.
+- `grep total: Filters the last line, which gives total disk space.
+- `awk '{printf("%d/%dGb (%d%%)\n", $3, $2/1000, $3/$2*100)}'`:
+- `$3`: Used disk space.
+- `$2/1000`: Converts total disk space to GB.
+- `$3/$2*100`: Calculates percentage.
 
-### 5- Disk Memory
-To view the disk memory usage, use the `df` command. Running `df -m` displays the memory in megabytes. Filter the output using `grep` and `awk` to show only relevant information. To calculate the used disk space, use:
-```df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use}'```
+### 7. Checking CPU Load
+```bash
+cpu_load=$(vmstat 1 2 | tail -1 | awk '{printf("%.1f%%", 100 - $15)}')
+```
+- `vmstat 1 2`: Runs vmstat twice (1-second interval).
+- `tail -1`: Takes the last line (latest stats).
+- `$15`: Idle CPU percentage.
+- `100 - $15`: Converts idle % to active CPU %.
 
-To get the total disk space, sum the values in the second column and convert the result to gigabytes if needed:
-```df -m | grep "/dev/" | grep -v "/boot" | awk '{total_size += $2} END {print total_size/1024}'```
+### 8. Checking Last Boot Time
+```bash
+last_boot=$(who -b | awk '$1 == "system" {print $3 " " $4}')
+```
+- `who -b`: Shows the last boot time.
+- `awk '$1 == "system" {print $3 " " $4}'`: Extracts date and time.
 
-To calculate the percentage of used disk memory, combine the previous commands:
-```df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%.2f%%)\n", use/total*100)}'```
+### 9. Checking LVM Usage
+```bash
+lvm_use=$(lsblk | awk '{print $6}' | grep -q lvm && printf "yes\n" || printf "no\n")
+```
+- `lsblk`: Lists disk partitions.
+- `awk '{print $6}'`: Extracts the 6th column (LVM status).
+- `grep -q lvm`: Checks if any partition uses LVM.
+- `&& printf "yes\n" || printf "no\n"`: Outputs "yes" if LVM is used, else "no".
 
-### 6- CPU Usage Percentage
-To find the CPU usage percentage, use the vmstat command to gather system statistics. Specify an interval and use tail and awk to extract the relevant data. For example:
-```vmstat 1 4 | tail -1 | awk '{print $15}'```
-This gives you the available CPU percentage.
+### 10. Checking Established TCP Connections
+```bash
+connections_tcp=$(ss -ta | grep ESTAB | wc -l)
+```
+- `ss -ta`: Lists all TCP connections.
+- `grep ESTAB`: Filters only established connections.
+- `wc -l`: Counts the number of established connections.
 
-Subtract this value from 100 to get the CPU usage percentage, then format the result to one decimal place and append a `%` symbol.
+### 11. Counting Logged-in Users
+```bash
+user_log=$(users | tr ' ' '\n' | sort -u | wc -w)
+```
+- `users`: Lists currently logged-in users.
+- `tr ' ' '\n'`: Converts spaces to new lines.
+- `sort -u`: Sorts and removes duplicates.
+- `wc -w`: Counts unique users.
 
-### 7- Last Reboot
-To check the date and time of the last system reboot, use the ```who -b``` command. Filter the output to show only the relevant information using `awk`:
-```who -b | awk '$1 == "system" {print $3 " " $4}'```
+### 12. Getting Network Information
+```bash
+network=$(hostname -I | tr '\n' ' ' && ip link | grep /ether | awk '{print $2}')
+```
+- `hostname -I`: Shows IP addresses.
+- `tr '\n' ' '`: Replaces new lines with spaces.
+- `ip link | grep /ether | awk '{print $2}'`: Extracts MAC address.
 
-### 8- LVM Active
-To determine if LVM (Logical Volume Manager) is active, use the `lsblk `command to display block device information. Filter the output to search for LVM and print "Yes" or "No" accordingly. The command is:
-```if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi```
+### 13. Counting Sudo Commands Executed
+```bash
+sudo=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+```
+- `journalctl _COMM=sudo`: Lists sudo command logs.
+- `grep COMMAND`: Filters only command executions.
+- `wc -l`: Counts occurrences.
 
-### 9- TCP Connections
-To determine the number of established TCP connections, use the ```ss``` command, which replaces the obsolete `netstat`. Run the command with the `-ta` flag to display only TCP connections. Then filter with `grep` to find established connections, and use `wc -l` to count them:
-```ss -ta | grep ESTAB | wc -l```
+### 14. Displaying the Collected Information
+```bash
+wall "
+	#Architecture: $architecture
+	#CPU physical: $cpu_physical
+	#vCPU: $cpu_virtual
+	#Memory Usage: $memory_usage
+	#Disk Usage: $disk_usage
+	#CPU load: $cpu_load
+	#Last boot: $last_boot
+	#LVM use: $lvm_use
+	#Connections TCP: $connections_tcp ESTABLISHED
+	#User log: $user_log
+	#Network: IP $network
+	#Sudo: $sudo cmd
+"
+```
+- `wall`:(all warnings) Broadcasts the message to all logged-in users.
+- Displays system stats in a formatted output.
 
-### 10- Number of Users
-To count the number of active `users`, use the users command, which lists logged-in users. Then use ```wc -w``` to count the words:
-```users | wc -w```
-
-### 11- IP Address & MAC Address
-To get the IP address of the host, use the ```hostname -I``` command. For the MAC address, use the ```ip link``` command to show network interfaces. Filter the output to display only the MAC address:
-```ip link | grep "link/ether" | awk '{print $2}'```
-
-### 12- Number of Commands Executed with sudo
-To count the number of commands executed with `sudo`, use the `journalctl` command, which collects system logs. Filter the results with `_COMM=sudo` and refine them with grep COMMAND. Finally, count the entries with `wc -l`:
-```journalctl _COMM=sudo | grep COMMAND | wc -l```
-
-Verify this command by executing it, running a sudo command, and checking if the count increases.
-
-⚠️ Reminder: Do not copy and paste these commands without fully understanding them! ⚠️
+⚠️ Reminder: Do not copy and paste these commands without fully understanding them! and verify this commands by executing it⚠️
 
 To create the Bash file for the monitoring script, connect via SSH, switch to superuser mode, and use `vim monitoring.sh`.
 ![continue](screen_shots_guide/Screen%20Shot%202025-01-02%20at%207.38.48%20PM.png)
