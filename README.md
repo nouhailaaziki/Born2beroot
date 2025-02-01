@@ -780,10 +780,10 @@ wall "
 	#Sudo: $sudo cmd
 "
 ```
-![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%203.52.31%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-02-01%20at%202.06.18%20PM.png)
 
 After successfully running the script, you should see output that gives you a detailed summary of your system's performance and configuration. The following is an example of what you might see after executing the monitoring script:
-![continue](screen_shots_guide/Screen%20Shot%202025-01-04%20at%2010.55.32%20AM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-02-01%20at%202.07.53%20PM.png)
 
 ## Step 14: Crontab Setup for Monitoring Script
 ---
