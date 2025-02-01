@@ -879,11 +879,11 @@ Do you remember the script, we'll go back to it to add this part?
 ```bash
 while true;
 do
-	sleep 599
+	sleep 600
 done
 ```
 It will be like this:
-![continue](screen_shots_guide/Screen%20Shot%202025-01-17%20at%203.54.07%20PM.png)
+![continue](screen_shots_guide/Screen%20Shot%202025-02-01%20at%202.07.00%20PM.png)
 
 Let's analyze it now.
 
