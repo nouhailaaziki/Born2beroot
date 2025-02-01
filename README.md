@@ -751,7 +751,7 @@ memory_usage=$(free --mega | grep Mem | awk '{printf("%d/%dMB (%.2f%%)\n", $3, $
 
 disk_usage=$(df -Bm --total | grep total | awk '{printf("%d/%dGb (%d%%)\n", $3, $2/1000, $3/$2*100)}')
 
-cpu_load=$(top -bn1 | grep '^%Cpu' | awk '{printf("%.1f", $2 + $4)}')
+cpu_load=$(vmstat 1 2 | tail -1 | awk '{printf("%.1f%%", 100 - $15)}')
 
 last_boot=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 
@@ -759,7 +759,7 @@ lvm_use=$(lsblk | awk '{print $6}' | grep -q lvm && printf "yes\n" || printf "no
 
 connections_tcp=$(ss -ta | grep ESTAB | wc -l)
 
-user_log=$(users | wc -w)
+user_log=$(users | tr ' ' '\n' | sort -u | wc -w)
 
 network=$(hostname -I | tr '\n' ' ' && ip link | grep /ether | awk '{print $2}')
 
@@ -771,7 +771,7 @@ wall "
 	#vCPU: $cpu_virtual
 	#Memory Usage: $memory_usage
 	#Disk Usage: $disk_usage
-	#CPU load: $cpu_load%
+	#CPU load: $cpu_load
 	#Last boot: $last_boot
 	#LVM use: $lvm_use
 	#Connections TCP: $connections_tcp ESTABLISHED
